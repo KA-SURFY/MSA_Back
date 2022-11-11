@@ -1,0 +1,8 @@
+services:
+
+  user:
+    image: rnjsxorl3075/user
+    container_name: user
+    ports:
+      - 8080:8080
+ 
