@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  redis:
+    host: 210.109.62.83
+    port: 6379
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://210.109.62.83:3306/comfy?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: root
+      password: qwer1234!
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        show-sql: true
+        generate-ddl: true
+
+
+
+  OAuth2:
+      google:
+        url: https://accounts.google.com/o/oauth2/v2/auth
+        client-id: 150579669124-iuljf351licgh2lg7s35t1fcn9ct6k2h.apps.googleusercontent.com
+        client-secret: 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
+        callback-url: http://localhost:8080/auth/google/callback
+        scope: https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+
+      kakao:
+        client-id: 82dd132f5cde72bb709217456528f8b3
+        authorization-uri: https://kauth.kakao.com/oauth/authorize
+        token-uri: https://kauth.kakao.com/oauth/token
+        user-info-uri: https://kapi.kakao.com/v2/user/me
+        user-name-attribute: id
+
