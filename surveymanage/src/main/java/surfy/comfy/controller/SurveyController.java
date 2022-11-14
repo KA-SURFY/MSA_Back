@@ -3,6 +3,7 @@ package surfy.comfy.controller;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.manage.DeleteSurveyResponse;
@@ -45,8 +46,9 @@ public class SurveyController {
         return new BaseResponse<>(surveyList);
     }
 
+
     //설문지 삭제 api
-    @DeleteMapping("/survey/{surveyId}/{memberId}")
+    @DeleteMapping("/surveys/{surveyId}/{memberId}")
     public BaseResponse<DeleteSurveyResponse> deleteSurvey (@PathVariable(name = "surveyId") Long surveyId, @PathVariable(name = "memberId") String memberId){
         DeleteSurveyResponse response = surveyService.deleteSurvey(surveyId, memberId);
 
@@ -82,7 +84,7 @@ public class SurveyController {
      * @param surveyId
      * @return
      */
-    @PatchMapping("/survey/{surveyId}")
+    @PatchMapping("/surveys/{surveyId}")
     public BaseResponse<FinishSurveyResponse> finishSurvey(@PathVariable(name = "surveyId") Long surveyId){
 
         FinishSurveyResponse response = surveyService.finishSurvey(surveyId);

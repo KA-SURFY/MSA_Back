@@ -1,6 +1,7 @@
 package surfy.comfy.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import surfy.comfy.data.result.*;
@@ -28,6 +29,7 @@ public class ResultService {
 
     private final OptionRepository optionRepository;
 
+    @Cacheable(value = "result_survey", key = "#surveyId", cacheManager = "CacheManager")
     public SurveyResultResponse getSurveyById(Long surveyId){
         Survey survey = resultRepository.findById(surveyId)
                 .orElseThrow(()-> new ResourceNotFoundException("Survey not exist with id :" + surveyId));
@@ -53,6 +55,7 @@ public class ResultService {
     }
 
     //질문 내용과 해당하는 답변 가져오기
+    @Cacheable(value = "result_question", key = "#surveyId", cacheManager = "CacheManager")
     public List<QuestionAnswerResponse> getQuestionAnswerList(Long surveyId){
         List<Question> questionList = questionRepository.findAllBySurvey_id(surveyId);
 
@@ -85,18 +88,21 @@ public class ResultService {
         return questionAnswerResponseList;
     }
 
+    @Cacheable(value = "result_option", key = "#questionId", cacheManager = "CacheManager")
     // 문항별 보기에서 객관식 질문이 있으면 옵션 가져오기
     public List<Option> getOptions(Long surveyId, Long questionId){
         List<Option> optionList = optionRepository.findAllBySurvey_Question_Id(surveyId, questionId);
         return optionList;
     }
 
+    @Cacheable(value = "result_grid", key = "#questionId", cacheManager = "CacheManager")
     public List<Grid> getGridOptions(Long surveyId, Long questionId){
         List<Grid> gridList = gridRepository.findAllBySurvey_Question_Id(surveyId, questionId);
         return gridList;
     }
 
     // 응답자 수 가져오기
+    @Cacheable(value = "result_individual", key = "#surveyId", cacheManager = "CacheManager")
     public List<RespondentsResponse> getRespondents(Long surveyId){
         List<Satisfaction> satisfactionList = individualRepository.findAll(surveyId);
         List<RespondentsResponse> responseList = satisfactionList.stream()

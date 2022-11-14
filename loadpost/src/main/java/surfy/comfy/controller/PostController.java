@@ -3,6 +3,7 @@ package surfy.comfy.controller;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.post.*;
@@ -58,6 +59,7 @@ public class PostController {
      * @param postId
      * @return memberId
      */
+
     @GetMapping("/post/{postId}/{memberId}")
     public BaseResponse<GetPostResponse> viewPost(@PathVariable(name="postId")Long postId,@PathVariable(name="memberId")Long memberId){
         logger.info("[viewPost] - request: {}",memberId);

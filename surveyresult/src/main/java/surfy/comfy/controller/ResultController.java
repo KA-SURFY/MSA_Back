@@ -2,6 +2,7 @@ package surfy.comfy.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.result.QuestionAnswerResponse;
@@ -20,6 +21,7 @@ public class ResultController {
     private final ResultService resultService;
 
     // 설문 정보
+
     @GetMapping("/result/{survey_id}")
     public BaseResponse<SurveyResultResponse> getSurvey(@PathVariable(name="survey_id") Long surveyId){
         SurveyResultResponse survey = resultService.getSurveyById(surveyId);
@@ -27,6 +29,7 @@ public class ResultController {
         return new BaseResponse<>(survey);
     }
     // 개별 보기 - 응답자 수
+
     @GetMapping("/result/individual/{survey_id}")
     public BaseResponse<List<RespondentsResponse>> getSurveyIndividual(@PathVariable(name="survey_id") Long surveyId){
         List<RespondentsResponse> responseList = resultService.getRespondents(surveyId);
@@ -35,6 +38,7 @@ public class ResultController {
     }
 
     // 문항별 보기
+
     @GetMapping("/result/question/{survey_id}")
     public BaseResponse<List<QuestionAnswerResponse>> getSurveyQuestion(@PathVariable(name="survey_id") Long surveyId){
         List<QuestionAnswerResponse> questionAnswerResponseList = resultService.getQuestionAnswerList(surveyId);
@@ -43,6 +47,7 @@ public class ResultController {
     }
 
     // 객관식 옵션
+
     @GetMapping("/result/question/option/{survey_id}/{question_id}")
     public BaseResponse<List<Option>> getQuestionOption(@PathVariable(name="survey_id") Long surveyId, @PathVariable(name="question_id") Long questionId){
         List<Option> optionList = resultService.getOptions(surveyId, questionId);
@@ -51,6 +56,7 @@ public class ResultController {
     }
 
     // 그리드 옵션
+
     @GetMapping("/result/question/grid/{survey_id}/{question_id}")
     public BaseResponse<List<Grid>> getGridOption(@PathVariable(name="survey_id")Long surveyId, @PathVariable(name="question_id")Long questionId){
         List<Grid> gridList = resultService.getGridOptions(surveyId, questionId);

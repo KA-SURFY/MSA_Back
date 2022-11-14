@@ -3,6 +3,7 @@ package surfy.comfy.controller;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.survey.*;
@@ -70,6 +71,7 @@ public class CreateSurveyController {
         return new BaseResponse<>(survey.getId());
     }
 
+    @CacheEvict(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     @PostMapping("/survey/{surveyId}/{memberId}")
     public BaseResponse<Long> EditSurvey(@RequestBody GetSurveyDataResponse data,@PathVariable(name="surveyId")Long surveyId, @PathVariable(name="memberId")String memberId){
         Optional<Member> loadmember= memberRepository.findById(Long.parseLong(memberId));

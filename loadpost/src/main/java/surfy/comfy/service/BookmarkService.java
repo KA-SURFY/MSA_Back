@@ -1,6 +1,9 @@
 package surfy.comfy.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import surfy.comfy.data.post.GetPostResponse;
@@ -16,10 +19,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class BookmarkService {
-
+    @Autowired
     private final BookmarkRepository bookmarkRepository;
+    @Autowired
     private final MemberRepository memberRepository;
+    @Autowired
     private final PostRepository postRepository;
+
+    @Cacheable(value = "bookmark", key = "#memberId", cacheManager = "CacheManager")
     @Transactional
     public List<GetPostResponse> getBookmarks(Long memberId){
         List<Bookmark> bookmarkList=bookmarkRepository.findAllByMember_Id(memberId);
