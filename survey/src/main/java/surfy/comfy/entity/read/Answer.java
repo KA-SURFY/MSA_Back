@@ -1,0 +1,46 @@
+package surfy.comfy.entity.read;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
+import surfy.comfy.entity.write.Grid;
+import surfy.comfy.entity.write.Option;
+import surfy.comfy.entity.write.Question;
+import surfy.comfy.entity.write.Survey;
+
+import javax.persistence.*;
+
+@Entity
+@Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Table(name="answer")
+public class Answer {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="answer_id")
+    private Long id;
+
+    private Long questionId;
+
+    private Long surveyId;
+
+    private Long optionId;
+
+    private Long gridId;
+
+    @OneToOne
+    @JoinColumn(name="essay_id")
+    private Essay essay;
+
+    @OneToOne
+    @JoinColumn(name="satisfaction_id")
+    private Satisfaction satisfaction;
+
+    @Column(name="submit_id")
+    private Long submit;
+
+    @OneToOne
+    @JoinColumn(name="slider_id")
+    private Slider slider;
+}

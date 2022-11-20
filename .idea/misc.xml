@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/createpost" />
-    <file type="web" url="file://$PROJECT_DIR$/createsurvey" />
-    <file type="web" url="file://$PROJECT_DIR$/loadpost" />
-    <file type="web" url="file://$PROJECT_DIR$/loadsurvey" />
+    <file type="web" url="file://$PROJECT_DIR$/auth" />
+    <file type="web" url="file://$PROJECT_DIR$/post" />
     <file type="web" url="file://$PROJECT_DIR$/respondent" />
+    <file type="web" url="file://$PROJECT_DIR$/survey" />
     <file type="web" url="file://$PROJECT_DIR$/surveymanage" />
-    <file type="web" url="file://$PROJECT_DIR$/surveyresult" />
     <file type="web" url="file://$PROJECT_DIR$/user" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />

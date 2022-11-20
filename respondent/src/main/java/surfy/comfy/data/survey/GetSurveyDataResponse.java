@@ -1,15 +1,11 @@
 package surfy.comfy.data.survey;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.SneakyThrows;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-import surfy.comfy.entity.Survey;
+import surfy.comfy.entity.read.Survey;
+import surfy.comfy.entity.write.Answer;
 import surfy.comfy.type.QuestionType;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +37,10 @@ public class GetSurveyDataResponse {
             if(survey.getQuestions().get(i).getQuestionType()== QuestionType.만족도){
                 try{
                     if(loadAnswer){
-                        for(int k=0;k<survey.getQuestions().get(i).getAnswers().size();k++){
-                            System.out.println(survey.getQuestions().get(i).getAnswers().get(k).getSubmit());
-                            if(survey.getQuestions().get(i).getAnswers().get(k).getSubmit()==submitid) {
-                                this.satis=survey.getQuestions().get(i).getAnswers().get(k).getSatisfaction().getPercent();
+                        List<Answer> answers= new GetAnswerResponse(survey.getQuestions().get(i).getId()).getAnswers();
+                        for(int k=0;k<answers.size();k++){
+                            if(answers.get(k).getSubmit()==submitid) {
+                                this.satis=answers.get(k).getSatisfaction().getPercent();
                                 break;
                             }
                         }

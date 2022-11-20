@@ -1,15 +1,11 @@
 package surfy.comfy.data.survey;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.SneakyThrows;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-import surfy.comfy.entity.Question;
+import surfy.comfy.entity.read.Question;
+import surfy.comfy.entity.write.Answer;
 import surfy.comfy.type.QuestionType;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +32,10 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                for(int i=0;i<question.getAnswers().size();i++){
-                    if(question.getAnswers().get(i).getSubmit()==submitid){
-                        this.choice_value.add(new GetChoiceAnswerResponse(question.getAnswers().get(i)));
+                List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                for(int i=0;i<answers.size();i++){
+                    if(answers.get(i).getSubmit()==submitid){
+                        this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
                     }
                 }
             }
@@ -56,9 +53,10 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                for(int i=0;i<question.getAnswers().size();i++){
-                    if(question.getAnswers().get(i).getSubmit()==submitid) {
-                        this.choice_value.add(new GetChoiceAnswerResponse(question.getAnswers().get(i)));
+                List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                for(int i=0;i<answers.size();i++){
+                    if(answers.get(i).getSubmit()==submitid){
+                        this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
                     }
                 }
             }
@@ -68,9 +66,10 @@ public class GetQuestionTypeResponse {
             this.name="주관식";
             try{
                 if(loadAnswer){
-                    for(int i=0;i<question.getAnswers().size();i++){
-                        if(question.getAnswers().get(i).getSubmit()==submitid) {
-                            this.answer=question.getAnswers().get(i).getEssay().getContents();
+                    List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                    for(int i=0;i<answers.size();i++){
+                        if(answers.get(i).getSubmit()==submitid) {
+                            this.answer=answers.get(i).getEssay().getContents();
                             break;
                         }
                     }
@@ -86,9 +85,10 @@ public class GetQuestionTypeResponse {
             this.name="슬라이더";
             try{
                 if(loadAnswer){
-                    for(int i=0;i<question.getAnswers().size();i++){
-                        if(question.getAnswers().get(i).getSubmit()==submitid) {
-                            this.answer= String.valueOf(question.getAnswers().get(i).getSlider().getValue());
+                    List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                    for(int i=0;i<answers.size();i++){
+                        if(answers.get(i).getSubmit()==submitid) {
+                            this.answer= String.valueOf(answers.get(i).getSlider().getValue());
                             break;
                         }
                     }
@@ -97,11 +97,6 @@ public class GetQuestionTypeResponse {
             catch(Exception e){
                 this.answer="0";
             }
-        }
-        else if(question.getQuestionType()==QuestionType.파일){
-            this.id=5L;
-            this.name="파일 업로드";
-            //this.fileList
         }
 
     }

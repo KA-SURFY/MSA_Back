@@ -5,37 +5,19 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/createpost" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/auth" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/createpost" />
+            <option value="$PROJECT_DIR$/auth" />
           </set>
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/createsurvey" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/post" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/createsurvey" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/loadpost" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/loadpost" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/loadsurvey" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/loadsurvey" />
+            <option value="$PROJECT_DIR$/post" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -50,19 +32,10 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/surveymanage" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/survey" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/surveymanage" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/surveyresult" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/surveyresult" />
+            <option value="$PROJECT_DIR$/survey" />
           </set>
         </option>
       </GradleProjectSettings>

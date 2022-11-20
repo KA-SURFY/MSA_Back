@@ -8,10 +8,6 @@ public class BusinessException extends RuntimeException{
 
     private BaseResponseStatus errorCode;
     private final Logger logger= LoggerFactory.getLogger(BusinessException.class);
-    public BusinessException(String message, BaseResponseStatus errorCode) {
-        super(message);
-        this.errorCode = errorCode;
-    }
 
     public BusinessException(BaseResponseStatus errorCode) {
         super(errorCode.getMessage());

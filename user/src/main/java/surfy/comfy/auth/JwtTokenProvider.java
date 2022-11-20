@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import surfy.comfy.entity.Token;
-import surfy.comfy.repository.TokenRepository;
+import surfy.comfy.repository.read.ReadTokenRepository;
+import surfy.comfy.repository.write.WriteTokenRepository;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.MessageDigest;
@@ -22,7 +22,8 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     Logger logger= LoggerFactory.getLogger(JwtTokenProvider.class);
-    private final TokenRepository tokenRepository;
+    private final ReadTokenRepository readTokenRepository;
+    private final WriteTokenRepository writeTokenRepository;
 //    @Value("${jwt.secret.access}")
 //    private String SECRET_KEY;
 //    @Value("${jwt.secret.refresh}")
@@ -78,20 +79,6 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // Request의 Header에서 token 값을 가져옵니다. "X-AUTH-TOKEN" : "TOKEN값'
-    public String resolveAccessToken(HttpServletRequest request) {
-        return request.getHeader("ACCESS_TOKEN");
-    }
-
-    public String resolveRefreshToken(HttpServletRequest request) {
-        return request.getHeader("REFRESH_TOKEN");
-    }
-
-    //Refresh 토큰의 DB상의 인덱스 번호를 해시로 받음
-    public Long resolveRefreshIndexToken(HttpServletRequest request) {
-        return Long.parseLong(request.getHeader("REFRESH_TOKEN_INDEX"));
-    }
-
     public Claims getClaimsFormToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey(SECRET_KEY))
@@ -120,65 +107,6 @@ public class JwtTokenProvider {
             return false;
         } catch (JwtException exception) {
             System.out.println("Access Token Tampered");
-            return false;
-        } catch (NullPointerException exception) {
-            System.out.println("Token is null");
-            return false;
-        }
-    }
-    public boolean isValidRefreshToken(String tokenId) {
-        System.out.println("isValidRefreshTokenId is : " +tokenId);
-        String refreshToken=tokenRepository.findByRefreshTokenIdxEncrypted(tokenId).get().getRefreshToken();
-        try{
-            Claims refreshClaims = getClaimsToken(refreshToken);
-            logger.info("Refresh expireTime: {}",refreshClaims.getExpiration());
-            logger.info("Refresh email: {}",refreshClaims.get("email"));
-
-            return true;
-        }  catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
-            Token token= tokenRepository.findByRefreshToken(refreshToken).get();
-            tokenRepository.delete(token);
-            System.out.println("Token Expired email : " + exception.getClaims().get("email"));
-            return false;
-        } catch (JwtException exception) {
-            System.out.println("Refresh Token Tampered");
-            return false;
-        } catch (NullPointerException exception) {
-            System.out.println("Token is null");
-            return false;
-        }
-//        try {
-//
-//            Claims refreshClaims = getClaimsToken(token);
-//            logger.info("Refresh expireTime: {}",refreshClaims.getExpiration());
-//            logger.info("Refresh email: {}",refreshClaims.get("email"));
-//
-//            return true;
-//        } catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
-//            Token refreshToken= tokenRepository.findByRefreshToken(token).get();
-//            tokenRepository.delete(refreshToken);
-//            System.out.println("Token Expired email : " + exception.getClaims().get("email"));
-//            return false;
-//        } catch (JwtException exception) {
-//            System.out.println("Refresh Token Tampered");
-//            return false;
-//        } catch (NullPointerException exception) {
-//            System.out.println("Token is null");
-//            return false;
-//        }
-    }
-    public boolean isOnlyExpiredToken(String token) {
-        System.out.println("isValidToken is : " +token);
-        try {
-            Claims accessClaims = getClaimsFormToken(token);
-            System.out.println("Access expireTime: " + accessClaims.getExpiration());
-            System.out.println("Access email: " + accessClaims.get("email"));
-            return false;
-        } catch (ExpiredJwtException exception) {
-            System.out.println("Token Expired email : " + exception.getClaims().get("email"));
-            return true;
-        } catch (JwtException exception) {
-            System.out.println("Token Tampered");
             return false;
         } catch (NullPointerException exception) {
             System.out.println("Token is null");

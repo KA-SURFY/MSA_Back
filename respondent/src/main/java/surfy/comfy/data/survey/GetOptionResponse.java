@@ -3,8 +3,7 @@
 package surfy.comfy.data.survey;
 
 import lombok.Data;
-import surfy.comfy.entity.Grid;
-import surfy.comfy.entity.Option;
+import surfy.comfy.entity.read.Option;
 @Data
 public class GetOptionResponse {
     private Long temid;
