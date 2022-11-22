@@ -4,9 +4,9 @@ server:
 spring:
   readdb:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://210.109.62.83:3306/read?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    jdbc-url: jdbc:mysql://mysql-docker-service/comfy?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: qwer1234!
+    password: 12345
     hikari:
       maximum-pool-size: 10
 
