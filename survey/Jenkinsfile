@@ -86,6 +86,8 @@ pipeline {
                       branch: 'master'
               
               sh "sed -i 's/msa-survey:.*\$/msa-survey:${currentBuild.number}/g' back-deploy/msa-survey-deployment.yaml"
+              sh "git config user.name 'hojin19082'"
+              sh "git config user.email '905018@naver.com'"
               sh "git add back-deploy/msa-survey-deployment.yaml"
               sh "git commit -m '[UPDATE] msa-survey ${currentBuild.number} image versioning'"
 
