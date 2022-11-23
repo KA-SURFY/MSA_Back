@@ -48,7 +48,7 @@ pipeline {
         stage('Bulid Docker') {
           agent any
           steps {
-            echo 'Bulid Docker'
+            echo 'Bulid Docker' 
             script {
                 dockerImage = docker.build imagename
             }
