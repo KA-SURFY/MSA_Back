@@ -31,9 +31,9 @@ pipeline {
           agent any
           steps {
             echo 'Bulid Gradle'
-            dir ('.'){
+            dir ('./user'){
                 sh """
-                ./user/gradlew clean build --exclude-task test
+                ./gradlew clean build --exclude-task test
                 """
             }
           }
