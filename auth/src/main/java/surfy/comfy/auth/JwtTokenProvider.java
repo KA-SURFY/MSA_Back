@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import surfy.comfy.entity.Token;
 import surfy.comfy.repository.read.ReadTokenRepository;
-import surfy.comfy.repository.write.WriteTokenRepository;
 
 import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
@@ -21,7 +20,6 @@ public class JwtTokenProvider {
 
     Logger logger= LoggerFactory.getLogger(JwtTokenProvider.class);
     private final ReadTokenRepository readTokenRepository;
-    private final WriteTokenRepository writeTokenRepository;
     private String SECRET_KEY="236979CB6F1AD6B6A6184A31E6BE37DB3818CC36871E26235DD67DCFE404149232r32rwerf";
 
     private String REFRESH_KEY="afkljeoiwajtgfasjdfhwerklawejriwjrewkhrjwajfejfkjawekraewradfaer3247hfkjashf9o3wrhkjgdfakhf3e9o5y8y4hfkjhfakjdhfwkerhwkahrfklwejr1l2kjeksekf";
@@ -104,8 +102,6 @@ public class JwtTokenProvider {
             return true;
         }  catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
             Token token= readTokenRepository.findByRefreshToken(refreshToken).get();
-            writeTokenRepository.delete(token);
-
             readTokenRepository.delete(token);
 
             System.out.println("Token Expired email : " + exception.getClaims().get("email"));
