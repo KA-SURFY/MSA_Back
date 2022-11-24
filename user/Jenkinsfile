@@ -12,7 +12,7 @@ pipeline {
         stage('Prepare') {
           steps {
             echo 'Clonning Repository'
-            git url: 'https://github.com/KA-SURFY/MSA_Back.git',
+            git url: 'https://github.com/KA-SURFY/MSA_Back.git', 
               branch: 'hojin',
               credentialsId: 'github_cred'
             }
