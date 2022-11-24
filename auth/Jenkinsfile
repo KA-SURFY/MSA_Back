@@ -50,6 +50,7 @@ pipeline {
           steps {
             echo 'Bulid Docker'
             script {
+                sh "cd auth"
                 dockerImage = docker.build imagename
             }
           }
