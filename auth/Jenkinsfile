@@ -9,22 +9,22 @@ pipeline {
 
     stages {
         // git에서 repository clone
-        stage('Prepare') {
-          steps {
-            echo 'Clonning Repository'
-            git url: 'https://github.com/KA-SURFY/MSA_Back.git',
-              branch: 'hojin',
-              credentialsId: 'github_cred'
-            }
-            post {
-             success { 
-               echo 'Successfully Cloned Repository'
-             }
-           	 failure {
-               error 'This pipeline stops here...'
-             }
-          }
-        }
+        // stage('Prepare') {
+        //   steps {
+        //     echo 'Clonning Repository'
+        //     git url: 'https://github.com/KA-SURFY/MSA_Back.git',
+        //       branch: 'hojin',
+        //       credentialsId: 'github_cred'
+        //     }
+        //     post {
+        //      success { 
+        //        echo 'Successfully Cloned Repository'
+        //      }
+        //    	 failure {
+        //        error 'This pipeline stops here...'
+        //      }
+        //   }
+        // }
 
         // gradle build
         stage('Bulid Gradle') {
@@ -50,7 +50,6 @@ pipeline {
           steps {
             echo 'Bulid Docker'
             script {
-                sh "cd auth"
                 dockerImage = docker.build imagename
             }
           }
