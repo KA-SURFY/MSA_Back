@@ -13,7 +13,10 @@ import surfy.comfy.repository.write.WriteTokenRepository;
 import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Component
@@ -29,7 +32,8 @@ public class JwtTokenProvider {
     // 1 * 60 * 1000L;   // 1분
     // 1 * 30 * 1000L;   // 30초
     // 60 * 60 * 24 * 7 * 1000L; //1주
-    private final long ACCESS_TOKEN_VALID_TIME = 1 * 10 * 1000L;
+    private final long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L; //30분
+    private final long REFRESH_TOKEN_VALID_TIME = 14 * 24 * 60 * 60 * 1000L; //14일
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
     @PostConstruct
@@ -58,7 +62,19 @@ public class JwtTokenProvider {
         byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+    public String createRefreshToken(String email) {
+        Claims claims = Jwts.claims();
+        claims.put("email", email); //
+        Date now = new Date();
+        Date expiration = new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME);
 
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(expiration)
+                .signWith(getSignKey(REFRESH_KEY))
+                .compact();
+    }
     public Claims getClaimsFormToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey(SECRET_KEY))
@@ -91,19 +107,23 @@ public class JwtTokenProvider {
         } catch (NullPointerException exception) {
             System.out.println("Token is null");
             return false;
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Token is Empty");
+            return false;
         }
     }
     public boolean isValidRefreshToken(String tokenId) {
-        System.out.println("isValidRefreshTokenId is : " +tokenId);
-        String refreshToken=readTokenRepository.findByRefreshTokenIdxEncrypted(tokenId).get().getRefreshToken();
-        try{
+        System.out.println("isValidRefreshTokenId is : " + tokenId);
+        String refreshToken = "";
+        try {
+            refreshToken = readTokenRepository.findByRefreshTokenIdxEncrypted(tokenId).get().getRefreshToken();
             Claims refreshClaims = getClaimsToken(refreshToken);
-            logger.info("Refresh expireTime: {}",refreshClaims.getExpiration());
-            logger.info("Refresh email: {}",refreshClaims.get("email"));
+            logger.info("Refresh expireTime: {}", refreshClaims.getExpiration());
+            logger.info("Refresh email: {}", refreshClaims.get("email"));
 
             return true;
-        }  catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
-            Token token= readTokenRepository.findByRefreshToken(refreshToken).get();
+        } catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
+            Token token = readTokenRepository.findByRefreshToken(refreshToken).get();
             writeTokenRepository.delete(token);
 
             readTokenRepository.delete(token);
@@ -111,10 +131,16 @@ public class JwtTokenProvider {
             System.out.println("Token Expired email : " + exception.getClaims().get("email"));
             return false;
         } catch (JwtException exception) {
-            System.out.println("Refresh Token Tampered");
+            System.out.println("Refresh Token Tampered.");
             return false;
         } catch (NullPointerException exception) {
-            System.out.println("Token is null");
+            System.out.println("Token is null.");
+            return false;
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Token is Empty.");
+            return false;
+        } catch (NoSuchElementException exception) {
+            System.out.println("RefreshToken is invalid.");
             return false;
         }
 //        try {
@@ -136,5 +162,21 @@ public class JwtTokenProvider {
 //            System.out.println("Token is null");
 //            return false;
 //        }
+    }
+
+    // refresh token index 암호화
+    public String tokenIndexEncrypt(String index) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(index.getBytes());
+
+        return bytesToHex(md.digest());
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder builder = new StringBuilder();
+        for (byte b : bytes) {
+            builder.append(String.format("%02x", b));
+        }
+        return builder.toString();
     }
 }

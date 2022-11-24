@@ -73,12 +73,11 @@ public class OAuthService {
                 }
                 token.setMember(member);
                 token.setRefreshToken(jwtRefreshToken);
-                Long idx=writeTokenRepository.save(token).getId();
-
-                token=readTokenRepository.findById(idx).get();
                 String refreshId=jwtTokenProvider.tokenIndexEncrypt(String.valueOf(token));
                 token.setRefreshTokenIdxEncrypted(refreshId);
                 writeTokenRepository.save(token);
+
+                readTokenRepository.save(token);
 
                 //logger.info("[로그인] - refresh token 재발급");
                 TokenResponse tokenResponse=new TokenResponse(jwtAccessToken,refreshId,member.getId(),member.getName(),member.getEmail());
@@ -101,6 +100,7 @@ public class OAuthService {
 
         Member member = googleUser.toUserSignUp();
         writeMemberRepository.save(member);
+        readMemberRepository.save(member);
     }
 
     @Transactional
@@ -109,6 +109,7 @@ public class OAuthService {
         Token token=readTokenRepository.findByMember_Id(member.getId()).get();
 
         writeTokenRepository.delete(token);
+        readTokenRepository.delete(token);
         return "로그아웃 성공";
     }
 }
