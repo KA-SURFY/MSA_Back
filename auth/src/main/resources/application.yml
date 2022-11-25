@@ -2,9 +2,17 @@
 #   port: 8080
 
 spring:
+  writedb:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://이거writedb서비스 이름/user?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: qwer1234!
+    hikari:
+      maximum-pool-size: 10
+
   readdb:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://mysql-docker-service/comfy?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    jdbc-url: jdbc:mysql://통합db서비스이름/comfy?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: 12345
     hikari:
