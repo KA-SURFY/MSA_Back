@@ -2,23 +2,28 @@
 #   port: 8080
 
 spring:
-  writedb:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://user.jeonggyu-namespace.svc.cluster.local/member?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    hikari:
-      maximum-pool-size: 10
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://mysql-docker-service/comfy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: root
+      password: 12345
+  # writedb:
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+  #   jdbc-url: jdbc:mysql://user.jeonggyu-namespace.svc.cluster.local/member?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+  #   username: root
+  #   hikari:
+  #     maximum-pool-size: 10
 
-  readdb:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://mysql-read-service.jeonggyu-namespace.svc.cluster.local/integration?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    hikari:
-      maximum-pool-size: 10
+  # readdb:
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+  #   jdbc-url: jdbc:mysql://mysql-read-service.jeonggyu-namespace.svc.cluster.local/integration?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+  #   username: root
+  #   hikari:
+  #     maximum-pool-size: 10
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
