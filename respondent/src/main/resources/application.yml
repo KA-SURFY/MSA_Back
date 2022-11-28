@@ -1,6 +1,6 @@
 
-# server:
-#   port: 8084
+server:
+  port: 8084
 spring:
   # redis:
   #   host: 210.109.62.83
