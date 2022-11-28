@@ -2,9 +2,9 @@ server:
   port: 8081
 
 spring:
-  # redis:
-  #   host: 210.109.62.83
-  #   port: 6379
+  redis:
+    host: 210.109.62.83
+    port: 6379
   writedb:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://post.jeonggyu-namespace.svc.cluster.local/post?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
