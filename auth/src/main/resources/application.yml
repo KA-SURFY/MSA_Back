@@ -4,7 +4,7 @@
 spring:
   writedb:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://user.jeonggyu-namespace.svc.cluster.local/user?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    jdbc-url: jdbc:mysql://auth.jeonggyu-namespace.svc.cluster.local/member?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     hikari:
       maximum-pool-size: 10
