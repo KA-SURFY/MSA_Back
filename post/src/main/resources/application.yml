@@ -8,15 +8,11 @@ spring:
   writedb:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://post.jeonggyu-namespace.svc.cluster.local/post?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    hikari:
-      maximum-pool-size: 10
+
   readdb:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://mysql-read-service.jeonggyu-namespace.svc.cluster.local/integration?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    hikari:
-      maximum-pool-size: 10
+
   jpa:
     hibernate:
       ddl-auto: none
