@@ -12,7 +12,7 @@ spring:
 
   readdb:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://mysql-1.mysql-read-service.jeonggyu-namespace.svc.cluster.local/integration?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    jdbc-url: jdbc:mysql://mysql-read-service.jeonggyu-namespace.svc.cluster.local/integration?usessl=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
   jpa:
     hibernate:
