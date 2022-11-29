@@ -21,6 +21,7 @@ import surfy.comfy.repository.write.WritePostRepository;
 import surfy.comfy.type.SurveyType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -217,7 +218,7 @@ public class PostService {
         post.setContents(request.getContents());
         post.setMemberId(request.getMemberId());
         post.setSurveyId(request.getSurveyId());
-        post.setUploadDate(LocalDate.now());
+        post.setUploadDate(LocalDateTime.now());
         return new RequestPost(writePostRepository.saveAndFlush(post));
     }
 }

@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import surfy.comfy.entity.write.Post;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class GetPostResponse {
@@ -45,7 +47,7 @@ public class GetPostResponse {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         try {
-            this.uploadDate=objectMapper.writeValueAsString(post.getUploadDate());
+            this.uploadDate=objectMapper.writeValueAsString(LocalDate.from(post.getUploadDate()));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

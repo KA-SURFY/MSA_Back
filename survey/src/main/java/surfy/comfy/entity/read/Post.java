@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -23,7 +24,7 @@ public class Post {
     @Column(name="survey_id")
     private Long surveyId;
 
-    private LocalDate uploadDate;
+    private LocalDateTime uploadDate;
     private String title;
     private String contents;
 

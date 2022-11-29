@@ -21,7 +21,7 @@ public class PostResponse {
         this.title=post.getTitle();
         this.authorName=post.getName();
         this.postId=post.getId();
-        this.uploadDate=post.getUploadDate();
+        this.uploadDate=LocalDate.from(post.getUploadDate());
         this.authorId=post.getMemberId();
         this.thumbnail=post.getThumbnail();
 //        this.type="post";

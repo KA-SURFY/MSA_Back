@@ -24,3 +24,8 @@ spring:
         show-sql: true
         generate-ddl: true
 
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
