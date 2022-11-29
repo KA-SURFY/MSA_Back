@@ -58,9 +58,9 @@ public class SurveyService {
      */
     @Transactional
     public PostSurveyResponse makeSurvey(Long surveyId, Long memberId){
-        List<Question> questionList= readQuestionRepository.findAllBySurvey_Id(surveyId);
-        List<Grid> gridList= readGridRepository.findAllBySurvey_Id(surveyId);
-        List<Option> optionList= readOptionRepository.findAllBySurvey_Id(surveyId);
+        List<Question> questionList= readQuestionRepository.findAllBySurveyId(surveyId);
+        List<Grid> gridList= readGridRepository.findAllBySurveyId(surveyId);
+        List<Option> optionList= readOptionRepository.findAllBySurveyId(surveyId);
         Survey createdSurvey= readSurveyRepository.findById(surveyId).get(); // 커뮤니티 게시글에서 마음에 들어서 만드려고 하는 설문지
 
         // 내 설문지로 생성
@@ -126,15 +126,13 @@ public class SurveyService {
     //설문지 삭제
     @Transactional
     public DeleteSurveyResponse deleteSurvey(Long surveyId, String memberId){
-        Survey survey = readSurveyRepository.findById(surveyId).get();
+        Survey survey = writeSurveyRepository.findById(surveyId).get();
         Optional<Post> post = readPostRepository.findAllBySurveyId(survey.getId());
 
         if(post.isPresent()) {
             logger.info("삭제 불가능");
             throw new CannotDeleteSurvey();
         }
-
-
 
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
         createSurveyService.ResetSurveyDB(survey);
@@ -173,9 +171,9 @@ public class SurveyService {
     //설문지 상태 update
     @Transactional
     public FinishSurveyResponse finishSurvey(Long surveyId){
-        Survey survey = readSurveyRepository.findById(surveyId).get();
-
+        Survey survey = writeSurveyRepository.findById(surveyId).get();
         survey.setStatus(SurveyType.finish);
+        writeSurveyRepository.save(survey);
         return new FinishSurveyResponse(surveyId);
     }
 

@@ -15,13 +15,13 @@ public class Answer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="answer_id")
     private Long id;
-
+    @Column(name="qustion_id")
     private Long questionId;
-
+    @Column(name="survey_id")
     private Long surveyId;
-
+    @Column(name="option_id")
     private Long optionId;
-
+    @Column(name="grid_id")
     private Long gridId;
 
     @OneToOne

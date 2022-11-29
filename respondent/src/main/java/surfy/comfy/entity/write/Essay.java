@@ -19,8 +19,10 @@ public class Essay {
 
     private String contents;
 
+    @Column(name="question_id")
     private Long questionId;
 
+    @Column(name="survey_id")
     private Long surveyId;
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface ReadAnswerRepository extends JpaRepository<Answer, Long> {
     List<Answer> findAllBySurveyId(Long SurveyId);
 
-    List<Answer> findAllByQuestionId(Long questionId);
-
     List<Answer> findAllByQuestionIdAndSubmit(Long questionId, Long submitId);
+
+    List<Answer> findAllByQuestionId(Long questionId);
 }

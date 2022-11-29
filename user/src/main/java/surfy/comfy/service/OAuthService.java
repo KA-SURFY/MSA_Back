@@ -66,7 +66,7 @@ public class OAuthService {
                 Member member = readMemberRepository.findByEmail(googleUser.getEmail()).orElseThrow(IllegalArgumentException::new);
                 Token token;
                 if(readTokenRepository.findByMember_Id(member.getId()).isPresent()){
-                    token=readTokenRepository.findByMember_Id(member.getId()).get();
+                    token=writeTokenRepository.findByMember_Id(member.getId()).get();
                 }
                 else{
                     token=new Token();
@@ -75,7 +75,7 @@ public class OAuthService {
                 token.setRefreshToken(jwtRefreshToken);
                 Long idx=writeTokenRepository.save(token).getId();
 
-                token=readTokenRepository.findById(idx).get();
+                token=writeTokenRepository.findById(idx).get();
                 String refreshId=jwtTokenProvider.tokenIndexEncrypt(String.valueOf(token));
                 token.setRefreshTokenIdxEncrypted(refreshId);
                 writeTokenRepository.save(token);
@@ -106,7 +106,7 @@ public class OAuthService {
     @Transactional
     public String logout(Long memberId){
         Member member=readMemberRepository.findById(memberId).get();
-        Token token=readTokenRepository.findByMember_Id(member.getId()).get();
+        Token token=writeTokenRepository.findByMember_Id(member.getId()).get();
 
         writeTokenRepository.delete(token);
         return "로그아웃 성공";

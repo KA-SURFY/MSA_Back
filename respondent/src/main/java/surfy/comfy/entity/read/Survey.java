@@ -20,6 +20,7 @@ public class Survey {
     @Column(name="survey_id")
     private Long id;
 
+    @Column(name="member_id")
     private Long memberId; // 설문 제작자
 
     @JsonManagedReference

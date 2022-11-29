@@ -63,7 +63,7 @@ public class ResultService {
     //질문 내용과 해당하는 답변 가져오기
     @Cacheable(value = "result_question", key = "#surveyId", cacheManager = "CacheManager")
     public List<QuestionAnswerResponse> getQuestionAnswerList(Long surveyId){
-        List<Question> questionList = readQuestionRepository.findAllBySurvey_id(surveyId);
+        List<Question> questionList = readQuestionRepository.findAllBySurveyId(surveyId);
 
         List<QuestionResponse> questionResponseList = questionList.stream()
                 .map(p -> new QuestionResponse(p))
@@ -97,13 +97,13 @@ public class ResultService {
     @Cacheable(value = "result_option", key = "#questionId", cacheManager = "CacheManager")
     // 문항별 보기에서 객관식 질문이 있으면 옵션 가져오기
     public List<Option> getOptions(Long surveyId, Long questionId){
-        List<Option> optionList = readOptionRepository.findAllBySurvey_Question_Id(surveyId, questionId);
+        List<Option> optionList = readOptionRepository.findAllBySurvey_QuestionId(surveyId, questionId);
         return optionList;
     }
 
     @Cacheable(value = "result_grid", key = "#questionId", cacheManager = "CacheManager")
     public List<Grid> getGridOptions(Long surveyId, Long questionId){
-        List<Grid> gridList = readGridRepository.findAllBySurvey_Question_Id(surveyId, questionId);
+        List<Grid> gridList = readGridRepository.findAllBySurvey_QuestionId(surveyId, questionId);
         return gridList;
     }
 

@@ -147,9 +147,9 @@ public class PostService {
      */
     @Transactional
     public DeletePostResponse deletePost(Long postId, Long memberId){
-        Post post=readPostRepository.findById(postId).get();
+        Post post=writePostRepository.findById(postId).get();
         // 해당 게시글을 북마크한 사람들의 북마크 삭제
-        List<Bookmark> bookmarks=readBookmarkRepository.findAllByPost_Id(postId);
+        List<Bookmark> bookmarks=writeBookmarkRepository.findAllByPost_Id(postId);
         for(Bookmark bookmark:bookmarks){
             writeBookmarkRepository.delete(bookmark);
         }

@@ -15,9 +15,9 @@ public class Satisfaction {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name="question_id")
     private Long questionId;
-
+    @Column(name="survey_id")
     private Long surveyId;
 
     private Long percent;

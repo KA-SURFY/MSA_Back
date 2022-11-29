@@ -50,7 +50,7 @@ public class BookmarkService {
 
     @Transactional
     public String deleteBookmark(Long postId,Long memberId){
-        Bookmark bookmark= readBookmarkRepository.findByMemberIdAndPost_Id(memberId,postId);
+        Bookmark bookmark= writeBookmarkRepository.findByMemberIdAndPost_Id(memberId,postId);
         writeBookmarkRepository.delete(bookmark);
 
         return "북마크 삭제 성공";

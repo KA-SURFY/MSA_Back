@@ -7,9 +7,9 @@ import surfy.comfy.entity.write.Grid;
 import java.util.List;
 
 public interface WriteGridRepository extends JpaRepository<Grid, Long> {
-    List<Grid> findAllByQuestion_Id(Long QuestionId);
-    List<Grid> findAllBySurvey_Id(Long surveyId);
+    List<Grid> findAllByQuestionId(Long QuestionId);
+    List<Grid> findAllBySurveyId(Long surveyId);
 
     @Query("select g from Grid g where g.survey.id = ?1 and g.question.id = ?2")
-    List<Grid> findAllBySurvey_Question_Id (Long surveyId, Long questionId);
+    List<Grid> findAllBySurvey_QuestionId (Long surveyId, Long questionId);
 }

@@ -5,14 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f43d6b-1577-4b95-b0c9-2307e7b30be2" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/config/WriteDBConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/repository/write/WriteTokenRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/auth/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/auth/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/controller/OAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/controller/OAuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/service/OAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/service/OAuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Bookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Bookmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/BookmarkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/BookmarkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/read/Survey.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/read/Survey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Essay.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Essay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Satisfaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Satisfaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Slider.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/entity/write/Slider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadAnswerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadAnswerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadGridRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadGridRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadOptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadOptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadQuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/repository/read/ReadQuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/service/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/service/AnswerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/service/ResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/java/surfy/comfy/service/ResultService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Essay.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Essay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Satisfaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Satisfaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Slider.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Slider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/write/Survey.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/write/Survey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadGridRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadGridRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadOptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadOptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadQuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadQuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadSurveyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadSurveyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteGridRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteGridRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteOptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteOptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteQuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/write/WriteQuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/CreateSurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/CreateSurveyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/InternalRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/InternalRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/SurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/service/SurveyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/surfy/comfy/service/OAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/surfy/comfy/service/OAuthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +190,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Batch.auth">
+  <component name="RunManager" selected="Spring Boot.ComfyApplication (2)">
     <configuration name="Dockerfile" type="BatchConfigurationType" factoryName="Batch" temporary="true">
       <module name="MSA_Back" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -187,17 +213,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="survey" type="BatchConfigurationType" factoryName="Batch" temporary="true">
-      <module name="MSA_Back" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="WORKING_DIRECTORY" value="./buildbat" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="survey.bat" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="user" type="BatchConfigurationType" factoryName="Batch" temporary="true">
       <module name="MSA_Back" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,6 +220,19 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="user.bat" />
       <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ComfyApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="user.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="surfy.comfy.ComfyApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="surfy.comfy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -252,11 +280,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ComfyApplication (2)" />
+        <item itemvalue="Spring Boot.ComfyApplication (1)" />
         <item itemvalue="Batch.auth" />
         <item itemvalue="Batch.user" />
         <item itemvalue="Batch.Dockerfile" />
-        <item itemvalue="Batch.survey" />
-        <item itemvalue="Spring Boot.ComfyApplication (2)" />
       </list>
     </recent_temporary>
   </component>

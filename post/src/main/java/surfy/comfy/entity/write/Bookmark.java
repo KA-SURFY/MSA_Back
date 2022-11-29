@@ -12,6 +12,7 @@ public class Bookmark {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="member_id")
     private Long memberId;
 
     @OneToOne

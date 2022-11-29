@@ -44,7 +44,7 @@ public class OAuthService {
                 String tokenFromDB = readTokenRepository.findByMember_Id(member.get().getId()).get().getRefreshToken();
                 logger.info("refresh token from DB: {}",tokenFromDB);
                 if(token.equals(tokenFromDB)) {   //DB의 refresh토큰과 지금들어온 토큰이 같은지 확인
-                    Token old_ref_token = readTokenRepository.findByRefreshToken(tokenFromDB).get();
+                    Token old_ref_token = writeTokenRepository.findByRefreshToken(tokenFromDB).get();
 
                     accessToken = jwtTokenProvider.createAccessToken(email);
                     refreshToken = jwtTokenProvider.createRefreshToken(email);
@@ -55,8 +55,6 @@ public class OAuthService {
                     encrypt_refreshToken=jwtTokenProvider.tokenIndexEncrypt(refreshToken);
                     old_ref_token.setRefreshTokenIdxEncrypted(encrypt_refreshToken);
                     writeTokenRepository.save(old_ref_token);
-
-                    readTokenRepository.save(old_ref_token);
                 }
                 else{
                     //DB의 Refresh토큰과 들어온 Refresh토큰이 다르면 중간에 변조된 것임

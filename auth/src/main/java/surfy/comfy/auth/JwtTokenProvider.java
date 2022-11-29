@@ -123,10 +123,8 @@ public class JwtTokenProvider {
 
             return true;
         } catch (ExpiredJwtException exception) { // 리프레시 토큰 만료
-            Token token = readTokenRepository.findByRefreshToken(refreshToken).get();
+            Token token = writeTokenRepository.findByRefreshToken(refreshToken).get();
             writeTokenRepository.delete(token);
-
-            readTokenRepository.delete(token);
 
             System.out.println("Token Expired email : " + exception.getClaims().get("email"));
             return false;

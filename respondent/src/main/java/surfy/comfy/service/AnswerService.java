@@ -45,7 +45,7 @@ public class AnswerService {
     @Transactional
     public void DeleteRespondentDB(Long surveyId){
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
-        List<Answer> ans_list= readAnswerRepository.findAllBySurveyId(surveyId);
+        List<Answer> ans_list= writeAnswerRepository.findAllBySurveyId(surveyId);
         for(int i=0;i<ans_list.size();i++){
             writeEssayRepository.delete(ans_list.get(i).getEssay());
             writeSliderRepository.delete(ans_list.get(i).getSlider());
@@ -57,7 +57,7 @@ public class AnswerService {
     @Transactional
     public void CreateAnswerDB(GetSurveyDataResponse data, Survey survey){
         List<GetQuestionResponse> ques_list=data.getQues_list();
-        List<Question> Ques_list= readQuestionRepository.findAllBySurvey_Id(survey.getId());
+        List<Question> Ques_list= readQuestionRepository.findAllBySurveyId(survey.getId());
 
         Long submitid;
         if(readAnswerRepository.findAllBySurveyId(survey.getId()).size() == 0){
@@ -89,8 +89,8 @@ public class AnswerService {
                 continue;
             }
 
-            List<Grid> gridList= readGridRepository.findAllByQuestion_Id(question.getId());
-            List<Option> optionList= readOptionRepository.findAllByQuestion_Id(question.getId());
+            List<Grid> gridList= readGridRepository.findAllByQuestionId(question.getId());
+            List<Option> optionList= readOptionRepository.findAllByQuestionId(question.getId());
 
             GetQuestionResponse ques_item=ques_list.get(i);
             t++;
