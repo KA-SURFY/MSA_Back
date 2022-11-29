@@ -16,7 +16,6 @@ public class Token {
     @Column(name="token_id")
     private Long id;
 
-    //private String accessToken;
     private String refreshToken;
     private String refreshTokenIdxEncrypted;
 
