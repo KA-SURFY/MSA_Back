@@ -13,6 +13,7 @@ import java.math.BigInteger;
 public class Token {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="token_id")
     private Long id;
 
     //private String accessToken;
