@@ -25,7 +25,7 @@ pipeline {
         //      }
         //   }
         // }     
- 
+  
         // gradle build
         stage('Bulid Gradle') {
           agent any
