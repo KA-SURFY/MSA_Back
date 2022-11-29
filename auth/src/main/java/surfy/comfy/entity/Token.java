@@ -11,7 +11,7 @@ import java.math.BigInteger;
 @Getter @Setter
 @Table(name="token")
 public class Token {
-
+ 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="token_id")
     private Long id;
