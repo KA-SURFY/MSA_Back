@@ -11,10 +11,5 @@
         <module name="post.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="surveymanage" target="11" />
-      <module name="surveymanage.main" target="11" />
-      <module name="surveymanage.test" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

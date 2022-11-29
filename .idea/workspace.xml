@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f43d6b-1577-4b95-b0c9-2307e7b30be2" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/data/post/PostResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/data/post/PostResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/entity/write/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/surfy/comfy/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/respondent/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/respondent/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/entity/read/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/entity/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/surfy/comfy/entity/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,35 +102,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zergl/Desktop/KAKAO/MSA_Back/respondent/src/main/java/surfy/comfy/entity/read&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;b18139aeaca9280435b257af934b0f6b&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelOrder2": "2",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RequestMappingsPanelWidth2": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/zergl/Desktop/KAKAO/MSA_Back/respondent/src/main/java/surfy/comfy/entity/read",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "configurable.group.build",
+    "spring.configuration.checksum": "3f842534aa932d8b8593655d3e8e48f0"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -165,7 +159,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ComfyApplication (3)">
+  <component name="RunManager" selected="Spring Boot.ComfyApplication (1)">
     <configuration name="Dockerfile" type="BatchConfigurationType" factoryName="Batch" temporary="true">
       <module name="MSA_Back" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -255,11 +249,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.ComfyApplication (2)" />
         <item itemvalue="Spring Boot.ComfyApplication (1)" />
-        <item itemvalue="Batch.auth" />
-        <item itemvalue="Batch.user" />
-        <item itemvalue="Batch.Dockerfile" />
+        <item itemvalue="Spring Boot.ComfyApplication (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -281,6 +272,7 @@
       <workItem from="1669080956928" duration="2484000" />
       <workItem from="1669083972640" duration="21638000" />
       <workItem from="1669200990829" duration="12218000" />
+      <workItem from="1669699556837" duration="2211000" />
     </task>
     <servers />
   </component>
