@@ -15,7 +15,7 @@ public class Answer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="answer_id")
     private Long id;
-    @Column(name="qustion_id")
+    @Column(name="question_id")
     private Long questionId;
     @Column(name="survey_id")
     private Long surveyId;
