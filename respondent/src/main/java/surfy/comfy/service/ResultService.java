@@ -1,5 +1,9 @@
 package surfy.comfy.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,7 @@ import surfy.comfy.entity.write.Satisfaction;
 import surfy.comfy.exception.ResourceNotFoundException;
 import surfy.comfy.repository.read.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +60,17 @@ public class ResultService {
         surveyResultResponse.setContents(survey.getContents());
         surveyResultResponse.setTitle(survey.getTitle());
         surveyResultResponse.setType(survey.getStatus());
-        surveyResultResponse.setEnd(survey.getEnd());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        try {
+            surveyResultResponse.setEnd(objectMapper.writeValueAsString(survey.getEnd()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
 
         return surveyResultResponse;
     }
