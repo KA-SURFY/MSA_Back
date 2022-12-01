@@ -24,6 +24,7 @@ public class SurveyService {
     public SurveyResponse getSurvey(Long surveyId){
         logger.info("[getSurvey] - surveyId: {}",surveyId);
         Survey survey = readSurveyRepository.findById(surveyId).get();
+        logger.info("[getSurvey] - surveyTitle: {}",survey.getTitle());
         SurveyResponse response =new SurveyResponse(survey);
         return response;
     }
