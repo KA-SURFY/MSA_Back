@@ -51,7 +51,7 @@ public class AnswerService {
             writeSliderRepository.delete(ans_list.get(i).getSlider());
             writeSatisfactionRepository.delete(ans_list.get(i).getSatisfaction());
         }
-        writeAnswerRepository.deleteAllInBatch(ans_list);
+        writeAnswerRepository.deleteAll(ans_list);
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
     @Transactional

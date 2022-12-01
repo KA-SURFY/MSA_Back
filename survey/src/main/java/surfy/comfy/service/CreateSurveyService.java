@@ -64,7 +64,7 @@ public class CreateSurveyService {
 
             GetQuestionTypeResponse type = ques_item.getType();
             writeQuestionRepository.saveAndFlush(question);
-            
+
             if(type.getId()==1||type.getId()==2) {
                 if (type.getId() == 1 && !type.getChoice_type()) question.setQuestionType(QuestionType.객관식_단일);
                 else if (type.getId() == 1 && type.getChoice_type()) question.setQuestionType(QuestionType.객관식_중복);
@@ -112,73 +112,6 @@ public class CreateSurveyService {
         question.setContents("만족도");
         question.setQuestionType(QuestionType.만족도);
         writeQuestionRepository.save(question);
-
-//        for(int i=0;i<ques_list.size();i++){
-//            Question question=new Question();
-//
-//            GetQuestionResponse ques_item=ques_list.get(i);
-//
-//            question.setSurvey(survey);
-//            question.setContents(ques_item.getQues());
-//
-//            GetQuestionTypeResponse type=ques_item.getType();
-//            if(type.getId()==1 || type.getId()==2){
-//                for(int k=0;k<ans_list.size();k++){ //해당 Question의 ans_list 불러오기
-//                    GetOptionResponse ans_item=ans_list.get(k);
-//
-//                    if(ans_item.getRootid()==ques_item.getId()){
-//                        Option option=new Option();
-//
-//                        option.setQuestion(question);
-//                        option.setContents(ans_item.getValue());
-//                        option.setSurvey(survey);
-//                        writeOptionRepository.save(option);
-//                    }
-//                }
-//            }
-//            if(type.getId()==1){ //객관식
-//                if(!type.getChoice_type()){
-//                    question.setQuestionType(QuestionType.객관식_단일);
-//                }
-//                else{
-//                    question.setQuestionType(QuestionType.객관식_중복);
-//                }
-//            }
-//            else if(type.getId()==2){ //객관식 Grid
-//                if(!type.getChoice_type()){
-//                    question.setQuestionType(QuestionType.객관식_그리드_단일);
-//                }
-//                else {
-//                    question.setQuestionType(QuestionType.객관식_그리드_중복);
-//                }
-//                for(int k=0;k<choice_list.size();k++){ //해당 Question의 choice_list 불러오기
-//                    GetGridResponse choice_item=choice_list.get(k);
-//                    if(choice_item.getRootid()==ques_item.getId()){
-//                        Grid grid=new Grid();
-//
-//                        grid.setQuestion(question);
-//                        grid.setContents(choice_item.getValue());
-//                        grid.setSurvey(survey);
-//                        writeGridRepository.save(grid);
-//                    }
-//                }
-//            }
-//            else if(type.getId()==3){
-//                question.setQuestionType(QuestionType.주관식);
-//            }
-//            else if(type.getId()==4) {
-//                question.setQuestionType(QuestionType.슬라이더);
-//            }
-//            writeQuestionRepository.save(question);
-//        }
-//        Question question=new Question();
-//
-//        question.setSurvey(survey);
-//        question.setContents("만족도");
-//        question.setQuestionType(QuestionType.만족도);
-//        writeQuestionRepository.save(question);
-
-
     }
 
     @Transactional
@@ -189,10 +122,10 @@ public class CreateSurveyService {
             List<Option> opt_list= writeOptionRepository.findAllByQuestionId(ques_list.get(i).getId());
             List<Grid> grid_list= writeGridRepository.findAllByQuestionId(ques_list.get(i).getId());
 
-            writeOptionRepository.deleteAllInBatch(opt_list);
-            writeGridRepository.deleteAllInBatch(grid_list);
+            writeOptionRepository.deleteAll(opt_list);
+            writeGridRepository.deleteAll(grid_list);
         }
-        writeQuestionRepository.deleteAllInBatch(ques_list);
+        writeQuestionRepository.deleteAll(ques_list);
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
 }
