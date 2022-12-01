@@ -28,7 +28,7 @@ public class LoadSurveyService {
         return ret;
     }
 
-    @Cacheable(value = "answer", key = "#surveyId.toString().concat(':'+#submitId.toString())", cacheManager = "CacheManager")
+    @Cacheable(value = "answer", key = "#surveyId.toString()+':'+#submitId.toString()", cacheManager = "CacheManager")
     @SneakyThrows
     @Transactional
     public GetSurveyDataResponse getAnswerdata(Long surveyId,Boolean loadAnswer,Long submitid){
