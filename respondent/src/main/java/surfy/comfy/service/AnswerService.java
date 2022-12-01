@@ -52,11 +52,6 @@ public class AnswerService {
             writeSatisfactionRepository.delete(ans_list.get(i).getSatisfaction());
         }
         writeAnswerRepository.deleteAll(ans_list);
-
-        writeEssayRepository.flush();
-        writeSliderRepository.flush();
-        writeSatisfactionRepository.flush();
-        writeAnswerRepository.flush();
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
     @Transactional

@@ -81,7 +81,7 @@ public class CreateSurveyService {
                         option.setQuestion(question);
                         option.setContents(ans_item.getValue());
                         option.setSurvey(survey);
-                        writeOptionRepository.save(option);
+                        writeOptionRepository.saveAndFlush(option);
                     }
                 }
 
@@ -94,7 +94,7 @@ public class CreateSurveyService {
                             grid.setQuestion(question);
                             grid.setContents(choice_item.getValue());
                             grid.setSurvey(survey);
-                            writeGridRepository.save(grid);
+                            writeGridRepository.saveAndFlush(grid);
                         }
                     }
                 }
@@ -111,7 +111,7 @@ public class CreateSurveyService {
         question.setSurvey(survey);
         question.setContents("만족도");
         question.setQuestionType(QuestionType.만족도);
-        writeQuestionRepository.save(question);
+        writeQuestionRepository.saveAndFlush(question);
     }
 
     @Transactional
@@ -126,10 +126,6 @@ public class CreateSurveyService {
             writeGridRepository.deleteAll(grid_list);
         }
         writeQuestionRepository.deleteAll(ques_list);
-
-        writeOptionRepository.flush();
-        writeGridRepository.flush();
-        writeQuestionRepository.flush();
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
 }
