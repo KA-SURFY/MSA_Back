@@ -18,7 +18,7 @@ public class Grid {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "question-grid")
     @JoinColumn(name="question_id")
     private Question question;
 

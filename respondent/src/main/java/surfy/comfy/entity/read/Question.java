@@ -24,15 +24,15 @@ public class Question {
     private QuestionType questionType;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "survey-question")
     @JoinColumn(name="survey_id")
     private Survey survey;
 
-    @JsonManagedReference
+    @JsonManagedReference(value ="question-option")
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     private List<Option> options;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "question-grid")
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     private List<Grid> grids;
 

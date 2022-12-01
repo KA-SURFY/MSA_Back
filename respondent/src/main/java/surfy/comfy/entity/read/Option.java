@@ -16,7 +16,7 @@ public class Option {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value ="question-option")
     @JoinColumn(name="question_id")
     private Question question;
 
