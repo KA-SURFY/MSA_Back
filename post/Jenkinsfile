@@ -78,7 +78,7 @@ pipeline {
               error 'This pipeline stops here...'
             }
           }
-        } 
+        }  
 
         stage('Deploy to dev') {
           steps {
