@@ -83,6 +83,8 @@ public class CreateSurveyService {
                         writeOptionRepository.save(option);
                         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
                     }
+                    System.out.println(ans_item.getRootid());
+                    System.out.println(ans_list.get(k));
                     System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 }
                 System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
