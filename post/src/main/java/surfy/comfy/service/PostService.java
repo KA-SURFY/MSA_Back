@@ -8,14 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import surfy.comfy.data.manage.SurveyResponse;
 import surfy.comfy.data.post.*;
+import surfy.comfy.entity.read.Member;
 import surfy.comfy.entity.write.Bookmark;
 import surfy.comfy.entity.write.Post;
 import surfy.comfy.entity.read.Satisfaction;
 import surfy.comfy.entity.read.Survey;
-import surfy.comfy.repository.read.ReadBookmarkRepository;
-import surfy.comfy.repository.read.ReadPostRepository;
-import surfy.comfy.repository.read.ReadSatisfactionRepository;
-import surfy.comfy.repository.read.ReadSurveyRepository;
+import surfy.comfy.repository.read.*;
 import surfy.comfy.repository.write.WriteBookmarkRepository;
 import surfy.comfy.repository.write.WritePostRepository;
 import surfy.comfy.type.SurveyType;
@@ -32,21 +30,23 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class PostService {
     private final WritePostRepository writePostRepository;
+
     private final WriteBookmarkRepository writeBookmarkRepository;
     private final ReadPostRepository readPostRepository;
     private final ReadBookmarkRepository readBookmarkRepository;
     private final ReadSurveyRepository readSurveyRepository;
     private final ReadSatisfactionRepository readSatisfactionRepository;
+    private final ReadMemberRepository readMemberRepository;
     private final Logger logger= LoggerFactory.getLogger(PostService.class);
 
     @Transactional
     public List<GetPostResponse> getMyposts(Long memberId){
-
+        Member member=readMemberRepository.findById(memberId).get();
         // 내가 작성한 게시글들들
         List<Post> myPostList=readPostRepository.findAllByMemberId(memberId);
         List<GetPostResponse> myPosts=new ArrayList<>();
         for(Post p:myPostList){
-            GetPostResponse my=new GetPostResponse(p,false,true);
+            GetPostResponse my=new GetPostResponse(p,member,false,true);
             myPosts.add(my);
         }
         return myPosts;
@@ -67,7 +67,8 @@ public class PostService {
         if(memberId==0) {
             member_case=false;
             for(Post p:allPostList){
-                GetPostResponse post=new GetPostResponse(p,isBookmarked,member_case);
+                Member member=readMemberRepository.findById(p.getMemberId()).get();
+                GetPostResponse post=new GetPostResponse(p,member,isBookmarked,member_case);
                 allPosts.add(post);
             }
             return allPosts;
@@ -76,14 +77,14 @@ public class PostService {
 
         for(Post p: allPostList){
             Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPost_Id(memberId,p.getId());
-
+            Member member=readMemberRepository.findById(p.getMemberId()).get();
             if(bookmark==null){
                 isBookmarked=false;
             }
             else{
                 isBookmarked=true;
             }
-            GetPostResponse post=new GetPostResponse(p,isBookmarked,member_case);
+            GetPostResponse post=new GetPostResponse(p,member,isBookmarked,member_case);
             allPosts.add(post);
         }
         return allPosts;
