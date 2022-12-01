@@ -52,6 +52,11 @@ public class AnswerService {
             writeSatisfactionRepository.delete(ans_list.get(i).getSatisfaction());
         }
         writeAnswerRepository.deleteAll(ans_list);
+
+        writeEssayRepository.flush();
+        writeSliderRepository.flush();
+        writeSatisfactionRepository.flush();
+        writeAnswerRepository.flush();
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
     @Transactional
@@ -78,6 +83,7 @@ public class AnswerService {
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
 
+                writeAnswerRepository.save(answer);
                 Satisfaction satisfaction=new Satisfaction();
                 satisfaction.setQuestionId(question.getId());
                 satisfaction.setPercent(data.getSatis());
@@ -85,7 +91,6 @@ public class AnswerService {
 
                 writeSatisfactionRepository.save(satisfaction);
                 answer.setSatisfaction(satisfaction);
-                writeAnswerRepository.save(answer);
                 continue;
             }
 
@@ -107,6 +112,8 @@ public class AnswerService {
                     answer.setQuestionId(question.getId());
                     answer.setSubmit(submitid);
 
+                    writeAnswerRepository.save(answer);
+
                     if(type.getId()==2){ //객관식 Grid 답변
                         Option select_opt=optionList.stream().filter(s->s.getId()==ans_item.getRootid()).findFirst().get();
                         Grid select_grid=gridList.stream().filter(s->s.getId()==ans_item.getSelectid()).findFirst().get();
@@ -117,7 +124,6 @@ public class AnswerService {
                         Option select_opt=optionList.stream().filter(s->s.getId()==ans_item.getSelectid()).findFirst().get();
                         answer.setOptionId(select_opt.getId());
                     }
-                    writeAnswerRepository.save(answer);
                 }
             }
             else if(type.getId()==3){ //주관식

@@ -126,6 +126,10 @@ public class CreateSurveyService {
             writeGridRepository.deleteAll(grid_list);
         }
         writeQuestionRepository.deleteAll(ques_list);
+
+        writeOptionRepository.flush();
+        writeGridRepository.flush();
+        writeQuestionRepository.flush();
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
 }
