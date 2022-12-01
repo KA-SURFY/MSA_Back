@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import surfy.comfy.entity.read.Answer;
 import surfy.comfy.entity.write.Question;
 import surfy.comfy.repository.read.ReadAnswerRepository;
-import surfy.comfy.service.LoadSurveyService;
 import surfy.comfy.type.QuestionType;
 
 import java.util.ArrayList;
@@ -21,8 +20,7 @@ public class GetQuestionTypeResponse {
     private String answer;
     public GetQuestionTypeResponse(){}
     @SneakyThrows
-    public GetQuestionTypeResponse(Question question,Boolean loadAnswer,Long submitid){
-        System.out.println(question.getId());
+    public GetQuestionTypeResponse(Question question, Boolean loadAnswer, Long submitid, ReadAnswerRepository readAnswerRepository){
         if(question.getQuestionType()== QuestionType.객관식_단일 ||
                 question.getQuestionType()== QuestionType.객관식_중복){
             this.id=1L;
@@ -35,7 +33,7 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
+                List<Answer> answers= new GetAnswerResponse(question.getId(), readAnswerRepository).getAnswers();
                 for(int i=0;i<answers.size();i++){
                     if(answers.get(i).getSubmit()==submitid){
                         this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
@@ -56,7 +54,7 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
+                List<Answer> answers= new GetAnswerResponse(question.getId(), readAnswerRepository).getAnswers();
                 for(int i=0;i<answers.size();i++){
                     if(answers.get(i).getSubmit()==submitid){
                         this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
@@ -69,7 +67,7 @@ public class GetQuestionTypeResponse {
             this.name="주관식";
             try{
                 if(loadAnswer){
-                    List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
+                    List<Answer> answers= new GetAnswerResponse(question.getId(), readAnswerRepository).getAnswers();
                     for(int i=0;i<answers.size();i++){
                         if(answers.get(i).getSubmit()==submitid) {
                             this.answer=answers.get(i).getEssay().getContents();
@@ -88,7 +86,7 @@ public class GetQuestionTypeResponse {
             this.name="슬라이더";
             try{
                 if(loadAnswer){
-                    List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
+                    List<Answer> answers= new GetAnswerResponse(question.getId(), readAnswerRepository).getAnswers();
                     for(int i=0;i<answers.size();i++){
                         if(answers.get(i).getSubmit()==submitid) {
                             this.answer= String.valueOf(answers.get(i).getSlider().getValue());

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.SneakyThrows;
 import surfy.comfy.entity.read.Answer;
 import surfy.comfy.entity.write.Survey;
+import surfy.comfy.repository.read.ReadAnswerRepository;
 import surfy.comfy.type.QuestionType;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class GetSurveyDataResponse {
     private String end;
     public GetSurveyDataResponse(){}
     @SneakyThrows
-    public GetSurveyDataResponse(Survey survey,Boolean loadAnswer,Long submitid){
+    public GetSurveyDataResponse(Survey survey, Boolean loadAnswer, Long submitid, ReadAnswerRepository readAnswerRepository){
         this.status = String.valueOf(survey.getStatus());
         this.start = String.valueOf(survey.getStart());
         this.end = String.valueOf(survey.getEnd());
@@ -39,8 +40,7 @@ public class GetSurveyDataResponse {
             if(survey.getQuestions().get(i).getQuestionType()== QuestionType.만족도){
                 try{
                     if(loadAnswer){
-
-                        List<Answer> answers= new GetAnswerResponse().GetAnswers(survey.getQuestions().get(i).getId());
+                        List<Answer> answers= new GetAnswerResponse(survey.getQuestions().get(i).getId(),readAnswerRepository).getAnswers();
                         for(int k=0;k<answers.size();k++){
                             if(answers.get(k).getSubmit()==submitid) {
                                 this.satis=answers.get(k).getSatisfaction().getPercent();
@@ -55,7 +55,7 @@ public class GetSurveyDataResponse {
                 }
                 continue;
             }
-            this.ques_list.add(new GetQuestionResponse(survey.getQuestions().get(i),loadAnswer,submitid));
+            this.ques_list.add(new GetQuestionResponse(survey.getQuestions().get(i),loadAnswer,submitid,readAnswerRepository));
 
             for(int k=0;k<survey.getQuestions().get(i).getOptions().size();k++){
                 GetOptionResponse opt = new GetOptionResponse(survey.getQuestions().get(i).getOptions().get(k));
