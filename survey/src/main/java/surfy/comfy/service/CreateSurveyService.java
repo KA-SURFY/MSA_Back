@@ -81,10 +81,11 @@ public class CreateSurveyService {
                         option.setContents(ans_item.getValue());
                         option.setSurvey(survey);
                         writeOptionRepository.save(option);
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
                     }
+                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 }
-
+                System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
                 if(type.getId()==2){
                     for(int k=0;k<choice_list.size();k++){ //해당 Question의 choice_list 불러오기
                         GetGridResponse choice_item=choice_list.get(k);
