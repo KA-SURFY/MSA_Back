@@ -74,14 +74,15 @@ public class CreateSurveyService {
 
                 for(int k=0;k<ans_list.size();k++){ //해당 Question의 ans_list 불러오기
                     GetOptionResponse ans_item=ans_list.get(k);
-
+                    System.out.println(ans_item.getRootid());
+                    System.out.println(ques_item.getId());
                     if(ans_item.getRootid()==ques_item.getId()){
                         Option option=new Option();
 
                         option.setQuestion(question);
                         option.setContents(ans_item.getValue());
                         option.setSurvey(survey);
-                        writeOptionRepository.saveAndFlush(option);
+                        writeOptionRepository.save(option);
                     }
                 }
 
@@ -94,7 +95,7 @@ public class CreateSurveyService {
                             grid.setQuestion(question);
                             grid.setContents(choice_item.getValue());
                             grid.setSurvey(survey);
-                            writeGridRepository.saveAndFlush(grid);
+                            writeGridRepository.save(grid);
                         }
                     }
                 }
@@ -111,7 +112,7 @@ public class CreateSurveyService {
         question.setSurvey(survey);
         question.setContents("만족도");
         question.setQuestionType(QuestionType.만족도);
-        writeQuestionRepository.saveAndFlush(question);
+        writeQuestionRepository.save(question);
     }
 
     @Transactional
