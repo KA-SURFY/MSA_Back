@@ -213,12 +213,14 @@ public class PostService {
      */
     @Transactional
     public RequestPost registerPost(RequestPost request){
+        Survey survey=readSurveyRepository.findById(request.getSurveyId()).get();
         Post post=new Post();
         post.setTitle(request.getTitle());
         post.setContents(request.getContents());
         post.setMemberId(request.getMemberId());
         post.setSurveyId(request.getSurveyId());
         post.setUploadDate(LocalDateTime.now());
+        post.setThumbnail(survey.getThumbnail());
         return new RequestPost(writePostRepository.saveAndFlush(post));
     }
 }
