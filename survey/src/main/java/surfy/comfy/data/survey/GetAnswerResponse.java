@@ -12,6 +12,11 @@ public class GetAnswerResponse {
     private List<Answer> answers;
     private final ReadAnswerRepository readAnswerRepository = getReadAnswerRepository();
 
+    @Autowired
+    public ReadAnswerRepository getReadAnswerRepository() {
+        return readAnswerRepository;
+    }
+
     public GetAnswerResponse(Long questionId){
         this.answers=readAnswerRepository.findAllByQuestionId(questionId);
     }
