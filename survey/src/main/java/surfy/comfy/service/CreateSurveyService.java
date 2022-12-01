@@ -74,8 +74,6 @@ public class CreateSurveyService {
 
                 for(int k=0;k<ans_list.size();k++){ //해당 Question의 ans_list 불러오기
                     GetOptionResponse ans_item=ans_list.get(k);
-                    System.out.println(ans_item.getRootid());
-                    System.out.println(ques_item.getId());
                     if(ans_item.getRootid()==ques_item.getId()){
                         Option option=new Option();
 
@@ -83,6 +81,7 @@ public class CreateSurveyService {
                         option.setContents(ans_item.getValue());
                         option.setSurvey(survey);
                         writeOptionRepository.save(option);
+                        System.out.println("-----------------------------------------------------------");
                     }
                 }
 
