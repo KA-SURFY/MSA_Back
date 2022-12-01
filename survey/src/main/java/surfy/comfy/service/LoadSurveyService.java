@@ -19,12 +19,13 @@ import java.util.List;
 public class LoadSurveyService {
 
     private final ReadSurveyRepository readSurveyRepository;
+    private final ReadAnswerRepository readAnswerRepository;
     @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     @SneakyThrows
     @Transactional
     public GetSurveyDataResponse getSurveydata(Long surveyId){
         Survey survey= readSurveyRepository.findSurveysById(surveyId);
-        GetSurveyDataResponse ret = new GetSurveyDataResponse(survey,false,null);
+        GetSurveyDataResponse ret = new GetSurveyDataResponse(survey,false,null,null);
         return ret;
     }
 
@@ -33,7 +34,7 @@ public class LoadSurveyService {
     @Transactional
     public GetSurveyDataResponse getAnswerdata(Long surveyId,Boolean loadAnswer,Long submitid){
         Survey survey= readSurveyRepository.findSurveysById(surveyId);
-        GetSurveyDataResponse ret = new GetSurveyDataResponse(survey,loadAnswer,submitid);
+        GetSurveyDataResponse ret = new GetSurveyDataResponse(survey,loadAnswer,submitid,readAnswerRepository);
         return ret;
     }
 }

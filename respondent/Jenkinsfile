@@ -22,9 +22,9 @@ pipeline {
         //      }
         //    	 failure {
         //        error 'This pipeline stops here...'
-        //      }
+        //      }   
         //   }
-        // }                 
+        // }                  
   
         // gradle build
         stage('Bulid Gradle') {
