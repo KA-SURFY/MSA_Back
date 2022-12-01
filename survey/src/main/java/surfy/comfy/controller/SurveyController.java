@@ -85,19 +85,6 @@ public class SurveyController {
         return new BaseResponse<>(response);
     }
 
-    /**
-     * minseo
-     * 마음에 드는 설문지 임시 저장
-     * @param surveyId
-     * @param memberId
-     * @return
-     */
-    @PostMapping("/created-survey/{surveyId}/{memberId}")
-    public BaseResponse<PostSurveyResponse> postCreatedSurvey(@PathVariable(name="surveyId")Long surveyId, @PathVariable(name="memberId")Long memberId){
-        logger.info("survey controller - postCreatedSurvey");
-        PostSurveyResponse response=surveyService.makeSurvey(surveyId,memberId);
-
-        return new BaseResponse<>(response);
-    }
+    
 
 }
