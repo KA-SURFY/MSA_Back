@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import surfy.comfy.entity.read.Member;
 import surfy.comfy.entity.write.Post;
 
 import java.time.LocalDate;
@@ -57,13 +58,13 @@ public class GetPostResponse {
 
     }
 
-    public GetPostResponse(Post post,Boolean isBookmarked,Boolean member_case){
+    public GetPostResponse(Post post, Member member,Boolean isBookmarked, Boolean member_case){
         this.postId=post.getId();
         this.title=post.getTitle();
         this.contents=post.getContents();
         this.surveyId=post.getSurveyId();
         this.surveyTitle=post.getTitle();
-        this.authorName=post.getName();
+        this.authorName= member.getName();
         this.authorId=post.getMemberId();
         this.isBookmarked=isBookmarked;
         this.member_case=member_case;
