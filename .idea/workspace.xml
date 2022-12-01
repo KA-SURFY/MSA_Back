@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a6f43d6b-1577-4b95-b0c9-2307e7b30be2" name="변경" comment="변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadPostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/main/java/surfy/comfy/repository/read/ReadPostRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +270,7 @@
       <workItem from="1669080956928" duration="2484000" />
       <workItem from="1669083972640" duration="21638000" />
       <workItem from="1669200990829" duration="12218000" />
-      <workItem from="1669699556837" duration="11210000" />
+      <workItem from="1669699556837" duration="13766000" />
     </task>
     <servers />
   </component>
