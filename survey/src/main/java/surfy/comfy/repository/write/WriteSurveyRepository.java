@@ -1,12 +1,14 @@
 package surfy.comfy.repository.write;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import surfy.comfy.entity.write.Survey;
 import surfy.comfy.type.SurveyType;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface WriteSurveyRepository extends JpaRepository<Survey,Long> {
     Optional<Survey> findById(Long surveyId);
     Survey findSurveysById(Long surveyId);
