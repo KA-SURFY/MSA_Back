@@ -70,7 +70,7 @@ public class SurveyService {
         survey.setMemberId(memberId);
         survey.setStatus(SurveyType.notFinish);
         Long newSurveyId= writeSurveyRepository.save(survey).getId();
-
+        logger.info("[SurveyService] - makeSurvey - newSurveyId: {}",newSurveyId);
         for(Question q:questionList){
             Question question=new Question();
             question.setContents(q.getContents());
