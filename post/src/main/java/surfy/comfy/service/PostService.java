@@ -213,6 +213,7 @@ public class PostService {
      */
     @Transactional
     public RequestPost registerPost(RequestPost request){
+        logger.info("[PostService - registerPost] : request.title: {}",request.getTitle());
         Survey survey=readSurveyRepository.findById(request.getSurveyId()).get();
         Post post=new Post();
         post.setTitle(request.getTitle());
