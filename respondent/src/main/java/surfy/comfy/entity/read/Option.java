@@ -20,6 +20,8 @@ public class Option {
     @JoinColumn(name="question_id")
     private Question question;
 
+    @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="survey_id")
     private Survey survey;
 
