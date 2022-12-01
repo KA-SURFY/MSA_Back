@@ -75,7 +75,7 @@ public class CreateSurveyService {
 
                 for(int k=0;k<ans_list.size();k++){ //해당 Question의 ans_list 불러오기
                     GetOptionResponse ans_item=ans_list.get(k);
-                    if(ans_item.getRootid().equals(ques_item.getId()) || ans_item.getRootid()==ques_item.getId()){
+                    if(ans_item.getRootid()==ques_item.getId()){
                         Option option=new Option();
 
                         option.setQuestion(question);
@@ -83,13 +83,11 @@ public class CreateSurveyService {
                         option.setSurvey(survey);
                         writeOptionRepository.save(option);
                     }
-                    System.out.println(ans_item.getRootid());
-                    System.out.println(ques_item.getId());
                 }
                 if(type.getId()==2){
                     for(int k=0;k<choice_list.size();k++){ //해당 Question의 choice_list 불러오기
                         GetGridResponse choice_item=choice_list.get(k);
-                        if(choice_item.getRootid().equals(ques_item.getId()) || choice_item.getRootid()==ques_item.getId()){
+                        if(choice_item.getRootid()==ques_item.getId()){
                             Grid grid=new Grid();
 
                             grid.setQuestion(question);
