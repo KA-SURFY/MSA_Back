@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.survey.GetSurveyDataResponse;
+import surfy.comfy.repository.read.ReadAnswerRepository;
 import surfy.comfy.service.LoadSurveyService;
 
 @RestController
@@ -16,7 +17,7 @@ public class LoadSurveyContoller {
 
     private final LoadSurveyService loadSurveyService;
     private final Logger logger= LoggerFactory.getLogger(LoadSurveyContoller.class);
-
+    private final ReadAnswerRepository readAnswerRepository;
     @SneakyThrows
     @GetMapping("/load/survey/{surveyId}")
     public BaseResponse<GetSurveyDataResponse> SendEditSurveyData(@PathVariable(name="surveyId")Long surveyId){
@@ -38,6 +39,9 @@ public class LoadSurveyContoller {
     @SneakyThrows
     @GetMapping("/load/respondent/answer/{surveyId}/{submitId}")
     public BaseResponse<GetSurveyDataResponse> SendSurveyAnswerData(@PathVariable(name="surveyId")Long surveyId,@PathVariable(name="submitId")Long submitId){
+        logger.info(readAnswerRepository.findAllByQuestionId(65L).toString());
+
+
         GetSurveyDataResponse result= loadSurveyService.getAnswerdata(surveyId,true,submitId);
         logger.info("respondentSurveyAnswer - surveyId: {}, submitId: {}",surveyId,submitId);
         return new BaseResponse<>(result);
