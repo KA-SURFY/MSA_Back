@@ -10,11 +10,14 @@ import java.util.List;
 @Data
 public class GetAnswerResponse {
     private List<Answer> answers;
-
-    @Autowired
     private ReadAnswerRepository readAnswerRepository;
 
+    @Autowired
+    public void callreadrepo(ReadAnswerRepository readAnswerRepository) {
+        this.readAnswerRepository=readAnswerRepository;
+    }
     public GetAnswerResponse(Long questionId){
         this.answers=readAnswerRepository.findAllByQuestionId(questionId);
     }
+
 }
