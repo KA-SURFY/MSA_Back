@@ -9,6 +9,7 @@ import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.manage.DeleteSurveyResponse;
 import surfy.comfy.data.manage.FinishSurveyResponse;
 import surfy.comfy.data.manage.SurveyResponse;
+import surfy.comfy.data.survey.PostSurveyResponse;
 import surfy.comfy.service.SurveyService;
 import surfy.comfy.type.SurveyType;
 
@@ -22,13 +23,7 @@ public class SurveyController {
     private final SurveyService surveyService;
     private final Logger logger= LoggerFactory.getLogger(SurveyController.class);
 
-    /**
-     * minseo
-     * 마음에 드는 설문지 임시 저장
-     * @param surveyId
-     * @param memberId
-     * @return
-     */
+
     @GetMapping("/surveys/{memberId}")
     public BaseResponse<List<SurveyResponse>> getSurvey(@PathVariable(name = "memberId") Long memberId){
         logger.info("[Survey Controller] - getSurvey : {}",memberId);
@@ -87,6 +82,21 @@ public class SurveyController {
     @PatchMapping("/surveys/{surveyId}")
     public BaseResponse<FinishSurveyResponse> finishSurvey(@PathVariable(name = "surveyId") Long surveyId){
         FinishSurveyResponse response = surveyService.finishSurvey(surveyId);
+        return new BaseResponse<>(response);
+    }
+
+    /**
+     * minseo
+     * 마음에 드는 설문지 임시 저장
+     * @param surveyId
+     * @param memberId
+     * @return
+     */
+    @PostMapping("/created-survey/{surveyId}/{memberId}")
+    public BaseResponse<PostSurveyResponse> postCreatedSurvey(@PathVariable(name="surveyId")Long surveyId, @PathVariable(name="memberId")Long memberId){
+        logger.info("survey controller - postCreatedSurvey");
+        PostSurveyResponse response=surveyService.makeSurvey(surveyId,memberId);
+
         return new BaseResponse<>(response);
     }
 
