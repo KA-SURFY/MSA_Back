@@ -39,7 +39,8 @@ public class GetSurveyDataResponse {
             if(survey.getQuestions().get(i).getQuestionType()== QuestionType.만족도){
                 try{
                     if(loadAnswer){
-                        List<Answer> answers= new GetAnswerResponse(survey.getQuestions().get(i).getId()).getAnswers();
+
+                        List<Answer> answers= new GetAnswerResponse().GetAnswers(survey.getQuestions().get(i).getId());
                         for(int k=0;k<answers.size();k++){
                             if(answers.get(k).getSubmit()==submitid) {
                                 this.satis=answers.get(k).getSatisfaction().getPercent();

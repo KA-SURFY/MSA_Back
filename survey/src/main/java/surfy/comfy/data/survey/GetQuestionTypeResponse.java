@@ -35,7 +35,7 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
                 for(int i=0;i<answers.size();i++){
                     if(answers.get(i).getSubmit()==submitid){
                         this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
@@ -56,7 +56,7 @@ public class GetQuestionTypeResponse {
             }
             this.choice_value=new ArrayList<>();
             if(loadAnswer){
-                List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
                 for(int i=0;i<answers.size();i++){
                     if(answers.get(i).getSubmit()==submitid){
                         this.choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
@@ -69,7 +69,7 @@ public class GetQuestionTypeResponse {
             this.name="주관식";
             try{
                 if(loadAnswer){
-                    List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                    List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
                     for(int i=0;i<answers.size();i++){
                         if(answers.get(i).getSubmit()==submitid) {
                             this.answer=answers.get(i).getEssay().getContents();
@@ -88,7 +88,7 @@ public class GetQuestionTypeResponse {
             this.name="슬라이더";
             try{
                 if(loadAnswer){
-                    List<Answer> answers= new GetAnswerResponse(question.getId()).getAnswers();
+                    List<Answer> answers= new GetAnswerResponse().GetAnswers(question.getId());
                     for(int i=0;i<answers.size();i++){
                         if(answers.get(i).getSubmit()==submitid) {
                             this.answer= String.valueOf(answers.get(i).getSlider().getValue());

@@ -8,19 +8,19 @@ import surfy.comfy.repository.read.ReadAnswerRepository;
 
 import java.util.List;
 
-@Data
-public class GetAnswerResponse {
-    private List<Answer> answers;
-    private ReadAnswerRepository readAnswerRepository=new GetRepo().getReadAnswerRepository();
 
-    public GetAnswerResponse(Long questionId){
-        this.answers=readAnswerRepository.findAllByQuestionId(questionId);
-    }
-}
 @Service
-@Data
-class GetRepo{
-    @Autowired
+public class GetAnswerResponse {
+
     private ReadAnswerRepository readAnswerRepository;
-    public GetRepo(){}
+
+    public GetAnswerResponse(){}
+
+    @Autowired
+    public void GetRepo(ReadAnswerRepository repo){
+        this.readAnswerRepository=repo;
+    }
+    public List<Answer> GetAnswers(Long questionId){
+        return readAnswerRepository.findAllByQuestionId(questionId);
+    }
 }
