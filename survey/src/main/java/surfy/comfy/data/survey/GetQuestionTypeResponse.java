@@ -22,6 +22,7 @@ public class GetQuestionTypeResponse {
     public GetQuestionTypeResponse(){}
     @SneakyThrows
     public GetQuestionTypeResponse(Question question,Boolean loadAnswer,Long submitid){
+        System.out.println(question.getId());
         if(question.getQuestionType()== QuestionType.객관식_단일 ||
                 question.getQuestionType()== QuestionType.객관식_중복){
             this.id=1L;
