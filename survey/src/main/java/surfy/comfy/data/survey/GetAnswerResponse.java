@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 public class GetAnswerResponse {
     List<Answer> answers;
-    ReadAnswerRepository readAnswerRepository;
+    ReadAnswerRepository writeAnswerRepository;
 
     public GetAnswerResponse(Long questionId){
-        this.answers=readAnswerRepository.findAllByQuestionId(questionId);
+        this.answers=writeAnswerRepository.findAllByQuestionId(questionId);
     }
 }
