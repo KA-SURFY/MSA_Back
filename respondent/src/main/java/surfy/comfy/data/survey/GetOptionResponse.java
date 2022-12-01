@@ -11,10 +11,4 @@ public class GetOptionResponse {
     private Long id;
     private String value;
     public GetOptionResponse(){}
-    public GetOptionResponse(Option option){
-        this.temid=0L;
-        this.rootid=option.getQuestion().getId();
-        this.id=option.getId();
-        this.value=option.getContents();
-    }
 }
