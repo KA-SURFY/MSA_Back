@@ -49,7 +49,7 @@ public class CreateSurveyService {
             LocalDate start=LocalDate.parse(data.getStart());
             survey.setStart(start);
         }
-        writeSurveyRepository.save(survey);
+        writeSurveyRepository.saveAndFlush(survey);
 
         List<GetQuestionResponse> ques_list=data.getQues_list();
         List<GetOptionResponse> ans_list=data.getAns_list();
@@ -63,14 +63,14 @@ public class CreateSurveyService {
             question.setContents(ques_item.getQues());
 
             GetQuestionTypeResponse type = ques_item.getType();
+            writeQuestionRepository.saveAndFlush(question);
+            
             if(type.getId()==1||type.getId()==2) {
                 if (type.getId() == 1 && !type.getChoice_type()) question.setQuestionType(QuestionType.객관식_단일);
                 else if (type.getId() == 1 && type.getChoice_type()) question.setQuestionType(QuestionType.객관식_중복);
 
                 if (type.getId() == 2 && !type.getChoice_type()) question.setQuestionType(QuestionType.객관식_그리드_단일);
                 else if (type.getId() == 2 && type.getChoice_type()) question.setQuestionType(QuestionType.객관식_그리드_중복);
-
-                writeQuestionRepository.save(question);
 
                 for(int k=0;k<ans_list.size();k++){ //해당 Question의 ans_list 불러오기
                     GetOptionResponse ans_item=ans_list.get(k);
@@ -101,12 +101,11 @@ public class CreateSurveyService {
             }
             else if(type.getId()==3){
                 question.setQuestionType(QuestionType.주관식);
-                writeQuestionRepository.save(question);
             }
             else if(type.getId()==4) {
                 question.setQuestionType(QuestionType.슬라이더);
-                writeQuestionRepository.save(question);
             }
+            writeQuestionRepository.saveAndFlush(question);
         }
         Question question=new Question();
         question.setSurvey(survey);
