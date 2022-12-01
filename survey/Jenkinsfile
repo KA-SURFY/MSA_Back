@@ -41,7 +41,7 @@ pipeline {
             failure {
               error 'This pipeline stops here...'
             }
-          }
+          }  
         }
         
         // docker build
