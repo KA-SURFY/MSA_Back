@@ -18,7 +18,7 @@ import java.math.BigInteger;
 @Transactional(readOnly = true)
 public class SurveyService {
     private ReadSurveyRepository readSurveyRepository;
-    private Logger logger= LoggerFactory.getLogger(SurveyService.class);
+    private Logger logger= LoggerFactory.getLogger(SurveyService.class); 
     //Survey id - 설문지 가져오기
     @Transactional
     public SurveyResponse getSurvey(Long surveyId){
