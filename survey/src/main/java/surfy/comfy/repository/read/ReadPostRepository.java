@@ -8,9 +8,11 @@ import java.util.Optional;
 
 public interface ReadPostRepository extends JpaRepository<Post,Long> {
 
+    List<Post> findAll();
     @Override
     Optional<Post> findById(Long aLong);
     List<Post> findAllByMemberId(Long memberId);
     List<Post> findByTitleContaining(String title);
     Optional<Post> findAllBySurveyId(Long surveyId);
+
 }
