@@ -25,6 +25,7 @@ public class BookmarkService {
 
     @Transactional
     public List<GetPostResponse> getBookmarks(Long memberId){
+        
         List<Bookmark> bookmarkList=readBookmarkRepository.findAllByMemberId(memberId);
         List<GetPostResponse> bookmarks=new ArrayList<>();
 
