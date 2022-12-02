@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.survey.*;
@@ -18,6 +19,7 @@ import surfy.comfy.service.SurveyService;
 public class CreateSurveyController {
 
     private final ReadSurveyRepository readSurveyRepository;
+    private final WriteSurveyRepository writeSurveyRepository;
     private final CreateSurveyService createSurveyService;
     private final SurveyService surveyService;
 
@@ -34,13 +36,14 @@ public class CreateSurveyController {
         return new BaseResponse<>(response);
     }
     @PostMapping("/survey/{memberId}")
+    @Transactional
     public BaseResponse<Long> CreateSurvey(@RequestBody GetSurveyDataResponse data, @PathVariable(name="memberId")Long memberId){
 
         System.out.println("memberId: "+memberId);
 
         Survey survey=new Survey();
         survey.setMemberId(memberId);
-
+        writeSurveyRepository.saveAndFlush(survey);
         createSurveyService.CreateSurveyDB(data,survey);
         System.out.println("surveyId"+survey.getId());
 
