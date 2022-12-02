@@ -13,6 +13,7 @@ import surfy.comfy.type.SurveyType;
 import javax.persistence.EntityManager;
 import java.awt.desktop.QuitEvent;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,6 +57,9 @@ public class CreateSurveyService {
         List<GetOptionResponse> ans_list=data.getAns_list();
         List<GetGridResponse> choice_list=data.getChoice_list();
 
+        List<Question> questions=new ArrayList<>();
+        List<Option> options=new ArrayList<>();
+        List<Grid> grids=new ArrayList<>();
         for(int i=0;i<ques_list.size();i++) {
             Question question = new Question();
             GetQuestionResponse ques_item = ques_list.get(i);
@@ -64,7 +68,6 @@ public class CreateSurveyService {
             question.setContents(ques_item.getQues());
 
             GetQuestionTypeResponse type = ques_item.getType();
-            writeQuestionRepository.saveAndFlush(question);
 
             if(type.getId()==1||type.getId()==2) {
                 if (type.getId() == 1 && !type.getChoice_type()) question.setQuestionType(QuestionType.객관식_단일);
@@ -81,7 +84,8 @@ public class CreateSurveyService {
                         option.setQuestion(question);
                         option.setContents(ans_item.getValue());
                         option.setSurvey(survey);
-                        writeOptionRepository.save(option);
+
+                        options.add(option);
                     }
                 }
                 if(type.getId()==2){
@@ -93,7 +97,8 @@ public class CreateSurveyService {
                             grid.setQuestion(question);
                             grid.setContents(choice_item.getValue());
                             grid.setSurvey(survey);
-                            writeGridRepository.save(grid);
+
+                            grids.add(grid);
                         }
                     }
                 }
@@ -104,13 +109,17 @@ public class CreateSurveyService {
             else if(type.getId()==4) {
                 question.setQuestionType(QuestionType.슬라이더);
             }
-            writeQuestionRepository.saveAndFlush(question);
+            questions.add(question);
         }
         Question question=new Question();
         question.setSurvey(survey);
         question.setContents("만족도");
         question.setQuestionType(QuestionType.만족도);
-        writeQuestionRepository.save(question);
+
+        questions.add(question);
+        writeQuestionRepository.saveAllAndFlush(questions);
+        writeOptionRepository.saveAll(options);
+        writeGridRepository.saveAll(grids);
     }
 
     @Transactional
