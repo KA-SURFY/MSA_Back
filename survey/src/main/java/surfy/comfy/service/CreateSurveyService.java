@@ -121,7 +121,7 @@ public class CreateSurveyService {
 
         questions.add(question);
 
-        writeSurveyRepository.save(survey);
+        writeSurveyRepository.saveAndFlush(survey);
         writeQuestionRepository.saveAll(questions);
         writeOptionRepository.saveAll(options);
         writeGridRepository.saveAll(grids);

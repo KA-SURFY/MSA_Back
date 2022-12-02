@@ -32,7 +32,7 @@ public class JwtTokenProvider {
     // 1 * 60 * 1000L;   // 1분
     // 1 * 30 * 1000L;   // 30초
     // 60 * 60 * 24 * 7 * 1000L; //1주
-    private final long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L; //30분
+    private final long ACCESS_TOKEN_VALID_TIME = 60 * 60 * 1000L; //30분
     private final long REFRESH_TOKEN_VALID_TIME = 14 * 24 * 60 * 60 * 1000L; //14일
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
