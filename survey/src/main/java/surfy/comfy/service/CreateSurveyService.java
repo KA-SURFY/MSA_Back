@@ -51,7 +51,6 @@ public class CreateSurveyService {
             LocalDate start=LocalDate.parse(data.getStart());
             survey.setStart(start);
         }
-        writeSurveyRepository.saveAndFlush(survey);
 
         List<GetQuestionResponse> ques_list=data.getQues_list();
         List<GetOptionResponse> ans_list=data.getAns_list();
@@ -117,7 +116,9 @@ public class CreateSurveyService {
         question.setQuestionType(QuestionType.만족도);
 
         questions.add(question);
-        writeQuestionRepository.saveAllAndFlush(questions);
+
+        writeSurveyRepository.save(survey);
+        writeQuestionRepository.saveAll(questions);
         writeOptionRepository.saveAll(options);
         writeGridRepository.saveAll(grids);
     }
