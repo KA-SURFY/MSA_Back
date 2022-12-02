@@ -37,7 +37,11 @@ public class CreateSurveyService {
         return "썸네일 저장 성공";
     }
     @Transactional
-    public void CreateSurveyDB(GetSurveyDataResponse data, Survey survey){
+    public Long CreateSurveyDB(GetSurveyDataResponse data, Survey survey, Long memberId){
+        if(survey==null){
+            survey=new Survey();
+        }
+        survey.setMemberId(memberId);
         survey.setTitle(data.getIntro0());
         survey.setContents(data.getIntro1());
 
@@ -121,6 +125,8 @@ public class CreateSurveyService {
         writeQuestionRepository.saveAll(questions);
         writeOptionRepository.saveAll(options);
         writeGridRepository.saveAll(grids);
+
+        return survey.getId();
     }
 
     @Transactional

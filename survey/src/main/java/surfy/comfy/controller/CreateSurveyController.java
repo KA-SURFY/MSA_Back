@@ -36,18 +36,14 @@ public class CreateSurveyController {
         return new BaseResponse<>(response);
     }
     @PostMapping("/survey/{memberId}")
-    @Transactional
     public BaseResponse<Long> CreateSurvey(@RequestBody GetSurveyDataResponse data, @PathVariable(name="memberId")Long memberId){
 
         System.out.println("memberId: "+memberId);
 
-        Survey survey=new Survey();
-        survey.setMemberId(memberId);
-        writeSurveyRepository.saveAndFlush(survey);
-        createSurveyService.CreateSurveyDB(data,survey);
-        System.out.println("surveyId"+survey.getId());
+        Long survey_Id=createSurveyService.CreateSurveyDB(data,null,memberId);
+        System.out.println("surveyId"+survey_Id);
 
-        return new BaseResponse<>(survey.getId());
+        return new BaseResponse<>(survey_Id);
     }
 
     @CacheEvict(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
@@ -56,8 +52,8 @@ public class CreateSurveyController {
         Survey survey = readSurveyRepository.findSurveysById(surveyId);
 
         createSurveyService.ResetSurveyDB(survey);
-        createSurveyService.CreateSurveyDB(data,survey);
-        return new BaseResponse<>(survey.getId());
+        Long survey_Id=createSurveyService.CreateSurveyDB(data,survey,memberId);
+        return new BaseResponse<>(survey_Id);
     }
 
     @PostMapping("/created-survey/{surveyId}/{memberId}")
