@@ -21,6 +21,7 @@ public class Question {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name="question_type")
     private QuestionType questionType;
 
     @Column(name="survey_id")
