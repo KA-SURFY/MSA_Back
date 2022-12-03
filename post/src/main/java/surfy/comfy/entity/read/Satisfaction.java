@@ -15,10 +15,8 @@ public class Satisfaction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name="survey_id")
-    private Survey survey;
+    @Column(name="survey_id")
+    private Long survey;
 
     private Long percent;
 
