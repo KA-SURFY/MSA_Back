@@ -10,6 +10,6 @@ import java.util.List;
 public interface ReadBookmarkRepository extends JpaRepository<Bookmark,Long> {
     List<Bookmark> findAllByMemberId(Long memberId);
     Bookmark findByMemberIdAndPostId(Long memberId,Long postId);
-    List<Bookmark> findAllByPost_Id(Long postId);
+    List<Bookmark> findAllByPostId(Long postId);
 
 }
