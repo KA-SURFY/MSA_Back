@@ -36,7 +36,7 @@ public class LoadSurveyService {
     private final ReadSliderRepository readSliderRepository;
     private final ReadEssayRepository readEssayRepository;
 
-    @Cacheable(value = "answer", key = "#surveyId+':'+#submitId", cacheManager = "CacheManager")
+    @Cacheable(value = "survey", key = "#surveyId+':'+#submitId", cacheManager = "CacheManager")
     @SneakyThrows
     @Transactional
     public GetSurveyDataResponse getSurveyData(Long surveyId,Long submitid){
@@ -44,8 +44,8 @@ public class LoadSurveyService {
 
         GetSurveyDataResponse getSurveyDataResponse=new GetSurveyDataResponse();
         getSurveyDataResponse.setStatus(survey.getStatus().toString());
-        getSurveyDataResponse.setStart(survey.getStart().toString());
-        getSurveyDataResponse.setEnd(survey.getEnd().toString());
+        getSurveyDataResponse.setStart(String.valueOf(survey.getStart()));
+        getSurveyDataResponse.setEnd(String.valueOf(survey.getEnd()));
 
         getSurveyDataResponse.setIntro0(survey.getTitle());
         getSurveyDataResponse.setIntro1(survey.getContents());
