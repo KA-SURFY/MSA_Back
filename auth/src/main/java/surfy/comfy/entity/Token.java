@@ -19,8 +19,6 @@ public class Token {
     private String refreshToken;
     private String refreshTokenIdxEncrypted;
 
-    @OneToOne
-    @JsonBackReference
-    @JoinColumn(name="member_id")
-    private Member member;
+    @Column(name="member_id")
+    private Long memberId;
 }
