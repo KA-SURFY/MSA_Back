@@ -89,7 +89,8 @@ public class PostController {
 
     @GetMapping("/post/{postId}/{memberId}")
     public BaseResponse<GetPostResponse> viewPost(@PathVariable(name="postId")Long postId,@PathVariable(name="memberId")Long memberId){
-        logger.info("[viewPost] - request: {}",memberId);
+        logger.info("[viewPost] - postId: {}",postId);
+        logger.info("[viewPost] - memberId: {}",memberId);
         GetPostResponse getPostResponse=postService.getPost(postId, memberId);
 
         return new BaseResponse<>(getPostResponse);
