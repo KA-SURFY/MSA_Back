@@ -48,10 +48,9 @@ public class AnswerService {
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
         List<Answer> ans_list= writeAnswerRepository.findAllBySurveyId(surveyId);
         for(int i=0;i<ans_list.size();i++){
-            if(ans_list.get(i).getEssayId()!=null) Essay essay=readEssayRepository.findById(ans_list.get(i).getEssayId()).get();
-            writeEssayRepository.delete(ans_list.get(i).getId());
-            writeSliderRepository.delete(ans_list.get(i).getSlider());
-            writeSatisfactionRepository.delete(ans_list.get(i).getSatisfaction());
+            writeEssayRepository.delete(writeEssayRepository.findById(ans_list.get(i).getEssayId()).get());
+            writeSliderRepository.delete(writeSliderRepository.findById(ans_list.get(i).getEssayId()).get());
+            writeSatisfactionRepository.delete(writeSatisfactionRepository.findById(ans_list.get(i).getSatisfactionId()).get());
         }
         writeAnswerRepository.deleteAll(ans_list);
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
@@ -89,7 +88,7 @@ public class AnswerService {
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
-                answer.setSatisfaction(satisfaction);
+                answer.setSatisfactionId(satisfaction.getId());
 
                 satisfactions.add(satisfaction);
                 answers.add(answer);
@@ -137,7 +136,7 @@ public class AnswerService {
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
-                answer.setEssay(essay);
+                answer.setEssayId(essay.getId());
 
                 essays.add(essay);
                 answers.add(answer);
@@ -152,7 +151,7 @@ public class AnswerService {
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
-                answer.setSlider(slider);
+                answer.setSliderId(slider.getId());
 
                 sliders.add(slider);
                 answers.add(answer);

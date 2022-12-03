@@ -34,6 +34,9 @@ public class Answer {
     @Column(name="satisfaction_id")
     private Long satisfactionId;
 
+    @Column(name="slider_id")
+    private Long sliderId;
+
     @Column(name="submit_id")
     private Long submit;
 }

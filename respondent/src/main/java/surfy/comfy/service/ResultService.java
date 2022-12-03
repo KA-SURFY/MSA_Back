@@ -112,13 +112,13 @@ public class ResultService {
     @Cacheable(value = "result_option", key = "#questionId", cacheManager = "CacheManager")
     // 문항별 보기에서 객관식 질문이 있으면 옵션 가져오기
     public List<Option> getOptions(Long surveyId, Long questionId){
-        List<Option> optionList = readOptionRepository.findAllBySurvey_QuestionId(surveyId, questionId);
+        List<Option> optionList = readOptionRepository.findAllByQuestionId(questionId);
         return optionList;
     }
 
     @Cacheable(value = "result_grid", key = "#questionId", cacheManager = "CacheManager")
     public List<Grid> getGridOptions(Long surveyId, Long questionId){
-        List<Grid> gridList = readGridRepository.findAllBySurvey_QuestionId(surveyId, questionId);
+        List<Grid> gridList = readGridRepository.findAllByQuestionId(questionId);
         return gridList;
     }
 

@@ -21,7 +21,7 @@ public class LoadSurveyContoller {
     @SneakyThrows
     @GetMapping("/load/survey/{surveyId}")
     public BaseResponse<GetSurveyDataResponse> SendEditSurveyData(@PathVariable(name="surveyId")Long surveyId){
-        GetSurveyDataResponse result= loadSurveyService.getSurveydata(surveyId);
+        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
         logger.info("editSurvey - surveyId: {}",surveyId);
         return new BaseResponse<>(result);
     }
@@ -30,7 +30,7 @@ public class LoadSurveyContoller {
     @SneakyThrows
     @GetMapping("/load/respondent/{surveyId}")
     public BaseResponse<GetSurveyDataResponse> SendRespondentSurveyData(@PathVariable(name="surveyId")Long surveyId){
-        GetSurveyDataResponse result= loadSurveyService.getSurveydata(surveyId);
+        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
         logger.info("respondentSurvey - surveyId: {}",surveyId);
         return new BaseResponse<>(result);
     }
@@ -39,10 +39,7 @@ public class LoadSurveyContoller {
     @SneakyThrows
     @GetMapping("/load/respondent/answer/{surveyId}/{submitId}")
     public BaseResponse<GetSurveyDataResponse> SendSurveyAnswerData(@PathVariable(name="surveyId")Long surveyId,@PathVariable(name="submitId")Long submitId){
-        logger.info(readAnswerRepository.findAllByQuestionId(65L).toString());
-
-
-        GetSurveyDataResponse result= loadSurveyService.getAnswerdata(surveyId,true,submitId);
+        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,submitId);
         logger.info("respondentSurveyAnswer - surveyId: {}, submitId: {}",surveyId,submitId);
         return new BaseResponse<>(result);
     }

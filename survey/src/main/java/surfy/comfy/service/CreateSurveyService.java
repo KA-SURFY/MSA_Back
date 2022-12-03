@@ -67,7 +67,7 @@ public class CreateSurveyService {
             Question question = new Question();
             GetQuestionResponse ques_item = ques_list.get(i);
 
-            question.setSurvey(survey);
+            question.setSurveyId(survey.getId());
             question.setContents(ques_item.getQues());
 
             GetQuestionTypeResponse type = ques_item.getType();
@@ -84,9 +84,9 @@ public class CreateSurveyService {
                     if(ans_item.getRootid().equals(ques_item.getId())){
                         Option option=new Option();
 
-                        option.setQuestion(question);
+                        option.setQuestionId(question.getId());
                         option.setContents(ans_item.getValue());
-                        option.setSurvey(survey);
+                        option.setSurveyId(survey.getId());
 
                         options.add(option);
                     }
@@ -97,9 +97,9 @@ public class CreateSurveyService {
                         if(choice_item.getRootid().equals(ques_item.getId())){
                             Grid grid=new Grid();
 
-                            grid.setQuestion(question);
+                            grid.setQuestionId(question.getId());
                             grid.setContents(choice_item.getValue());
-                            grid.setSurvey(survey);
+                            grid.setSurveyId(survey.getId());
 
                             grids.add(grid);
                         }
@@ -115,13 +115,14 @@ public class CreateSurveyService {
             questions.add(question);
         }
         Question question=new Question();
-        question.setSurvey(survey);
+        question.setSurveyId(survey.getId());
+
         question.setContents("만족도");
         question.setQuestionType(QuestionType.만족도);
 
         questions.add(question);
 
-        writeSurveyRepository.saveAndFlush(survey);
+        writeSurveyRepository.save(survey);
         writeQuestionRepository.saveAll(questions);
         writeOptionRepository.saveAll(options);
         writeGridRepository.saveAll(grids);

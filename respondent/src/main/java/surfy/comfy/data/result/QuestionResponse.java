@@ -17,7 +17,7 @@ public class QuestionResponse {
     private Long surveyId;
     private QuestionType type;
     public QuestionResponse(Question question){
-        this.surveyId = question.getSurvey().getId();
+        this.surveyId = question.getSurveyId();
         this.id = question.getId();
         this.contents = question.getContents();
         this.type = question.getQuestionType();

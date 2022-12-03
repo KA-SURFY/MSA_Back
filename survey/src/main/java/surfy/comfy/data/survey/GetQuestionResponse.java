@@ -13,12 +13,4 @@ public class GetQuestionResponse {
     private String ques;
     private GetQuestionTypeResponse type;
     public GetQuestionResponse(){}
-    @SneakyThrows
-    public GetQuestionResponse(Question question, Boolean loadAnswer, Long submitid, ReadAnswerRepository readAnswerRepository){
-
-        this.id=question.getId();
-        this.ques=question.getContents();
-        this.type=new GetQuestionTypeResponse(question,loadAnswer,submitid,readAnswerRepository);
-
-    }
 }

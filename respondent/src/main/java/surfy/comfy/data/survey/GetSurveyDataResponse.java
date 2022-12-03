@@ -1,15 +1,12 @@
 package surfy.comfy.data.survey;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.SneakyThrows;
-import surfy.comfy.entity.read.Survey;
-import surfy.comfy.entity.write.Answer;
-import surfy.comfy.type.QuestionType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class GetSurveyDataResponse {
     private String intro0;
     private String intro1;
