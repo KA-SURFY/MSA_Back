@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,7 @@ public class ResultService {
     private final ReadGridRepository readGridRepository;
 
     private final ReadOptionRepository readOptionRepository;
+    Logger logger= LoggerFactory.getLogger(ResultService.class);
 
     @Cacheable(value = "result_survey", key = "#surveyId", cacheManager = "CacheManager")
     public SurveyResultResponse getSurveyById(Long surveyId){
@@ -105,7 +108,7 @@ public class ResultService {
             questionAnswerResponse.setAnswer(answers);
             questionAnswerResponseList.add(questionAnswerResponse);
         }
-
+        logger.info("문항별 보기 - {}",questionAnswerResponseList);
         return questionAnswerResponseList;
     }
 
