@@ -43,7 +43,7 @@ public class ResultService {
     private final ReadOptionRepository readOptionRepository;
     Logger logger= LoggerFactory.getLogger(ResultService.class);
 
-    @Cacheable(value = "result_survey", key = "#surveyId", cacheManager = "CacheManager")
+//    @Cacheable(value = "result_survey", key = "#surveyId", cacheManager = "CacheManager")
     public SurveyResultResponse getSurveyById(Long surveyId){
         Survey survey = readResultRepository.findById(surveyId)
                 .orElseThrow(()-> new ResourceNotFoundException("Survey not exist with id :" + surveyId));
@@ -102,7 +102,7 @@ public class ResultService {
                 List<Answer> answerList1 = readAnswerRepository.findAllByQuestionIdAndSubmit(questionResponseList.get(i).getId(), (j + 1L));
                 for(Answer a : answerList1) {
                     answers.add(a);
-                    logger.info("[문항별 보기] - answers: {}",a);
+                    logger.info("[문항별 보기] - answers: {}",readQuestionRepository.findById(a.getQuestionId()).get().getContents());
                     logger.info("[문항별 보기] - answers: {}",a.getQuestionId());
                 }
 
