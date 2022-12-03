@@ -98,14 +98,12 @@ public class PostController {
 
     /**
      * 게시글 삭제
-     * @param postId
-     * @param memberId
      * @return
      */
-    @DeleteMapping("/post/{postId}/{memberId}")
-    public BaseResponse<DeletePostResponse> deletePost(@PathVariable(name="postId")Long postId,@PathVariable(name="memberId")Long memberId){
-        logger.info("[deletePost]: {}",postId);
-        DeletePostResponse response= postService.deletePost(postId,memberId);
+    @DeleteMapping("/post")
+    public BaseResponse<DeletePostResponse> deletePost(@RequestBody DeletePostRequest request){
+        logger.info("[deletePost]: {}",request.getPostId());
+        DeletePostResponse response= postService.deletePost(request.getPostId(), request.getMemberId());
         logger.info("[deletePost]: {}",response);
         return new BaseResponse<>(response);
     }
