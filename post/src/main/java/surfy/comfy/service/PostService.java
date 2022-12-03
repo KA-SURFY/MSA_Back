@@ -76,7 +76,7 @@ public class PostService {
         else member_case=true;
 
         for(Post p: allPostList){
-            Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPost_Id(memberId,p.getId());
+            Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPostId(memberId,p.getId());
             Member member=readMemberRepository.findById(p.getMemberId()).get();
             if(bookmark==null){
                 isBookmarked=false;
@@ -126,7 +126,7 @@ public class PostService {
         if(memberId!=0){ // 비회원
             Long member_id=memberId;
             member_case=true;
-            Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPost_Id(member_id,postId);
+            Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPostId(member_id,postId);
             if(bookmark==null){
                 isBookmarked=false;
             }

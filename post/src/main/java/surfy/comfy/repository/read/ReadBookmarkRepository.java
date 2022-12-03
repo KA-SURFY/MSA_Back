@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ReadBookmarkRepository extends JpaRepository<Bookmark,Long> {
     List<Bookmark> findAllByMemberId(Long memberId);
-    Bookmark findByMemberIdAndPost_Id(Long memberId,Long postId);
+    Bookmark findByMemberIdAndPostId(Long memberId,Long postId);
     List<Bookmark> findAllByPost_Id(Long postId);
 
 }
