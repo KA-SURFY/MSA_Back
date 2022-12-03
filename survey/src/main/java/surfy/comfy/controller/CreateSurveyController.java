@@ -45,8 +45,7 @@ public class CreateSurveyController {
 
         return new BaseResponse<>(survey_Id);
     }
-
-    @CacheEvict(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
+    @CacheEvict(value = "survey", key = "#surveyId+':null'", cacheManager = "CacheManager")
     @PostMapping("/survey/{surveyId}/{memberId}")
     public BaseResponse<Long> EditSurvey(@RequestBody GetSurveyDataResponse data,@PathVariable(name="surveyId")Long surveyId, @PathVariable(name="memberId")Long memberId){
         Survey survey = readSurveyRepository.findSurveysById(surveyId);

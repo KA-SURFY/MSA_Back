@@ -163,7 +163,7 @@ public class SurveyService {
 
         List<Survey> surveyList= readSurveyRepository.findAll();
         for(Survey survey:surveyList){
-            if(LocalDate.from(survey.getEnd()).isBefore(now)) survey.setStatus(SurveyType.finish);
+            if(survey.getEnd().toLocalDate().isBefore(now)) survey.setStatus(SurveyType.finish);
         }
     }
 
