@@ -104,7 +104,7 @@ public class PostService {
 
         Post post=readPostRepository.findById(postId).get();
         Survey survey= readSurveyRepository.findSurveysById(post.getSurveyId());
-        List<Satisfaction> allSatisfactions=readSatisfactionRepository.findAllBySurvey_Id(survey.getId());
+        List<Satisfaction> allSatisfactions=readSatisfactionRepository.findAllBySurveyId(survey.getId());
         Long total=0L;
         int average;
 
@@ -188,7 +188,7 @@ public class PostService {
         int average=0;
 
         for(Survey s:mySurveyList){
-            List<Satisfaction> allSatisfactions=readSatisfactionRepository.findAllBySurvey_Id(s.getId());
+            List<Satisfaction> allSatisfactions=readSatisfactionRepository.findAllBySurveyId(s.getId());
             Long total=0L;
 
             if(allSatisfactions.size()==0){

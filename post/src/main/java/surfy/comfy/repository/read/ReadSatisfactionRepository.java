@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface ReadSatisfactionRepository extends JpaRepository<Satisfaction,Long> {
-    List<Satisfaction> findAllBySurvey_Id(Long surveyId);
+    List<Satisfaction> findAllBySurveyId(Long surveyId);
 
 
 }

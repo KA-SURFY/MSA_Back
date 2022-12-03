@@ -22,9 +22,9 @@ public class Survey {
     @Column(name="member_id")
     private Long memberId; // 설문 제작자
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "survey",cascade = CascadeType.ALL)
-    private List<Satisfaction> satisfactions;
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "survey",cascade = CascadeType.ALL)
+//    private List<Satisfaction> satisfactions;
 
     private LocalDate start;
     private LocalDate end;
