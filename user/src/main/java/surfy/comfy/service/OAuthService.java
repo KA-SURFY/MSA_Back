@@ -65,8 +65,8 @@ public class OAuthService {
                 logger.info("[로그인]");
                 Member member = readMemberRepository.findByEmail(googleUser.getEmail()).orElseThrow(IllegalArgumentException::new);
                 Token token;
-                if(readTokenRepository.findByMember_Id(member.getId()).isPresent()){
-                    token=writeTokenRepository.findByMember_Id(member.getId()).get();
+                if(readTokenRepository.findByMemberId(member.getId()).isPresent()){
+                    token=writeTokenRepository.findByMemberId(member.getId()).get();
                 }
                 else{
                     token=new Token();
@@ -106,7 +106,7 @@ public class OAuthService {
     @Transactional
     public String logout(Long memberId){
         Member member=readMemberRepository.findById(memberId).get();
-        Token token=writeTokenRepository.findByMember_Id(member.getId()).get();
+        Token token=writeTokenRepository.findByMemberId(member.getId()).get();
 
         writeTokenRepository.delete(token);
         return "로그아웃 성공";
