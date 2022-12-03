@@ -2,6 +2,8 @@ package surfy.comfy.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import surfy.comfy.config.BaseResponse;
 import surfy.comfy.data.result.QuestionAnswerResponse;
@@ -13,11 +15,13 @@ import surfy.comfy.service.ResultService;
 
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 public class ResultController {
 
     private final ResultService resultService;
+    Logger logger= LoggerFactory.getLogger(ResultController.class);
 
     // 설문 정보
 
@@ -40,6 +44,7 @@ public class ResultController {
 
     @GetMapping("/result/question/{survey_id}")
     public BaseResponse<List<QuestionAnswerResponse>> getSurveyQuestion(@PathVariable(name="survey_id") Long surveyId){
+        logger.info("[respondent service] - surveyId: {}",surveyId);
         List<QuestionAnswerResponse> questionAnswerResponseList = resultService.getQuestionAnswerList(surveyId);
 
         return new BaseResponse<>(questionAnswerResponseList);
