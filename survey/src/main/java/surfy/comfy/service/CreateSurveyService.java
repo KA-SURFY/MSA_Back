@@ -51,10 +51,10 @@ public class CreateSurveyService {
         }
         else{
             survey.setStatus(SurveyType.surveying);
-            LocalDateTime end=LocalDateTime.parse(data.getEnd());
-            survey.setEnd(end);
-            LocalDateTime start=LocalDateTime.parse(data.getStart());
-            survey.setStart(start);
+            LocalDate end=LocalDate.parse(data.getEnd());
+            survey.setEnd(end.atTime(0,0,0));
+            LocalDate start=LocalDate.parse(data.getStart());
+            survey.setStart(start.atTime(0,0,0));
         }
         writeSurveyRepository.save(survey);
 
