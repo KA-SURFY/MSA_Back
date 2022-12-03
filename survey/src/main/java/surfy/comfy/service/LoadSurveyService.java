@@ -105,7 +105,7 @@ public class LoadSurveyService {
             for(int k=0;k<read_grid.size();k++){
                 GetGridResponse grid = new GetGridResponse();
 
-                grid.setId(read_option.get(k).getId());
+                grid.setId(read_grid.get(k).getId());
                 grid.setTemid(0L);
                 grid.setRootid(read_ques.get(i).getId());
                 grid.setValue(read_option.get(k).getContents());
