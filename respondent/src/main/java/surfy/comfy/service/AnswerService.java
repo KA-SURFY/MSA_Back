@@ -46,13 +46,10 @@ public class AnswerService {
     @Transactional
     public void DeleteRespondentDB(Long surveyId){
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
-        List<Answer> ans_list= writeAnswerRepository.findAllBySurveyId(surveyId);
-        for(int i=0;i<ans_list.size();i++){
-            writeEssayRepository.delete(writeEssayRepository.findById(ans_list.get(i).getEssayId()).get());
-            writeSliderRepository.delete(writeSliderRepository.findById(ans_list.get(i).getEssayId()).get());
-            writeSatisfactionRepository.delete(writeSatisfactionRepository.findById(ans_list.get(i).getSatisfactionId()).get());
-        }
-        writeAnswerRepository.deleteAll(ans_list);
+        writeEssayRepository.deleteAll(writeEssayRepository.findAllBySurveyId(surveyId));
+        writeSliderRepository.deleteAll(writeSliderRepository.findAllBySurveyId(surveyId));
+        writeSatisfactionRepository.deleteAll(writeSatisfactionRepository.findAllBySurveyId(surveyId));
+        writeAnswerRepository.deleteAll(writeAnswerRepository.findAllBySurveyId(surveyId));
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
     @Transactional

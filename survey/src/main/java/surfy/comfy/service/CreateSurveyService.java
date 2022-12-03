@@ -128,15 +128,9 @@ public class CreateSurveyService {
     @Transactional
     public void ResetSurveyDB(Survey survey){
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
-        List<Question> ques_list= writeQuestionRepository.findAllBySurveyId(survey.getId());
-        for(int i=0;i<ques_list.size();i++){
-            List<Option> opt_list= writeOptionRepository.findAllByQuestionId(ques_list.get(i).getId());
-            List<Grid> grid_list= writeGridRepository.findAllByQuestionId(ques_list.get(i).getId());
-
-            writeOptionRepository.deleteAll(opt_list);
-            writeGridRepository.deleteAll(grid_list);
-        }
-        writeQuestionRepository.deleteAll(ques_list);
+        writeOptionRepository.deleteAll(writeOptionRepository.findAllBySurveyId(survey.getId()));
+        writeGridRepository.deleteAll(writeGridRepository.findAllBySurveyId(survey.getId()));
+        writeQuestionRepository.deleteAll(writeQuestionRepository.findAllBySurveyId(survey.getId()));
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
 }
