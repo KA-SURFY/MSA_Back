@@ -143,10 +143,13 @@ public class LoadSurveyService {
                 getQuestionTypeResponse.setChoice_type(true);
             }
             List<GetChoiceAnswerResponse> choice_value=new ArrayList<>();
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             if(submitid!=null){
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 List<Answer> answers= readAnswerRepository.findAllByQuestionId(question.getId());
                 for(int i=0;i<answers.size();i++){
                     if(answers.get(i).getSubmit()==submitid){
+                        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
                         choice_value.add(new GetChoiceAnswerResponse(answers.get(i),question.getQuestionType()));
                     }
                 }
