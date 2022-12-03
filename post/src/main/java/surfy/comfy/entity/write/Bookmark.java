@@ -15,8 +15,7 @@ public class Bookmark {
     @Column(name="member_id")
     private Long memberId;
 
-    @OneToOne
-    @JoinColumn(name="post_id")
-    private Post post;
+    @Column(name="post_id")
+    private Long postId;
 
 }
