@@ -108,7 +108,7 @@ public class LoadSurveyService {
                 grid.setId(read_grid.get(k).getId());
                 grid.setTemid(0L);
                 grid.setRootid(read_ques.get(i).getId());
-                grid.setValue(read_option.get(k).getContents());
+                grid.setValue(read_grid.get(k).getContents());
 
                 int t=0;
                 for(;t<choice_list.size();t++){
