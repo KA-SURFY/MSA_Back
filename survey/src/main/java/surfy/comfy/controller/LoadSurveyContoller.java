@@ -20,6 +20,7 @@ public class LoadSurveyContoller {
     private final ReadAnswerRepository readAnswerRepository;
     @SneakyThrows
     @GetMapping("/load/survey/{surveyId}")
+    @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendEditSurveyData(@PathVariable(name="surveyId")Long surveyId){
         GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
         logger.info("editSurvey - surveyId: {}",surveyId);
@@ -29,6 +30,7 @@ public class LoadSurveyContoller {
 
     @SneakyThrows
     @GetMapping("/load/respondent/{surveyId}")
+    @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendRespondentSurveyData(@PathVariable(name="surveyId")Long surveyId){
         GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
         logger.info("respondentSurvey - surveyId: {}",surveyId);
@@ -38,6 +40,7 @@ public class LoadSurveyContoller {
 
     @SneakyThrows
     @GetMapping("/load/respondent/answer/{surveyId}/{submitId}")
+    @Cacheable(value = "survey", key = "#surveyId+':'+#submitId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendSurveyAnswerData(@PathVariable(name="surveyId")Long surveyId,@PathVariable(name="submitId")Long submitId){
         GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,submitId);
         logger.info("respondentSurveyAnswer - surveyId: {}, submitId: {}",surveyId,submitId);
