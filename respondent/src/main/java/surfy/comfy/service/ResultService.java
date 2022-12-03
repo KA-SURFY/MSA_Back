@@ -35,7 +35,9 @@ public class ResultService {
     private final ReadQuestionRepository readQuestionRepository;
 
     private final ReadIndividualRepository readIndividualRepository;
-
+    private final ReadEssayRepository readEssayRepository;
+    private final ReadSliderRepository readSliderRepository;
+    private final ReadSatisfactionRepository readSatisfactionRepository;
     private final ReadAnswerRepository readAnswerRepository;
 
     private final ReadGridRepository readGridRepository;
@@ -97,11 +99,17 @@ public class ResultService {
             questionAnswerResponse.setQuestion(questionResponseList.get(i));
 
             // 한 질문에 대한 answerList 쫙 가져오기
-            List<Answer> answers = new ArrayList<>();
+            List<AnswerDataResponse> answers = new ArrayList<>();
             for(int j=0; j<user_count; j++) {
                 List<Answer> answerList1 = readAnswerRepository.findAllByQuestionIdAndSubmit(questionResponseList.get(i).getId(), (j + 1L));
                 for(Answer a : answerList1) {
-                    answers.add(a);
+                    AnswerDataResponse answerDataResponse=new AnswerDataResponse();
+                    answerDataResponse.setGrid(readGridRepository.findById(a.getGridId()).get());
+                    answerDataResponse.setEssay(readEssayRepository.findById(a.getEssayId()).get());
+                    answerDataResponse.setSlider(readSliderRepository.findById(a.getSliderId()).get());
+                    answerDataResponse.setSatisfaction(readSatisfactionRepository.findById(a.getSatisfactionId()).get());
+                    answerDataResponse.setOption(readOptionRepository.findById(a.getOptionId()).get());
+                    answers.add(answerDataResponse);
                     logger.info("[문항별 보기] - answers: {}",readQuestionRepository.findById(a.getQuestionId()).get().getContents());
                     logger.info("[문항별 보기] - answers: {}",a.getQuestionId());
                 }

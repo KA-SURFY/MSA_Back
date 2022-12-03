@@ -13,6 +13,6 @@ import java.util.List;
 public class QuestionAnswerResponse {
 
     private QuestionResponse question;
-    private List<Answer> answer;
+    private List<AnswerDataResponse> answer;
 
 }
