@@ -69,11 +69,6 @@ public class AnswerService {
         }
         System.out.println(submitid);
 
-        List<Answer> answers=new ArrayList<>();
-        List<Satisfaction> satisfactions=new ArrayList<>();
-        List<Essay> essays=new ArrayList<>();
-        List<Slider> sliders=new ArrayList<>();
-
         int t=0;
         for(int i=0;i<Ques_list.size();i++){
             Question question= Ques_list.get(i);
@@ -83,15 +78,14 @@ public class AnswerService {
                 satisfaction.setQuestionId(question.getId());
                 satisfaction.setPercent(data.getSatis());
                 satisfaction.setSurveyId(survey.getId());
+                writeSatisfactionRepository.save(satisfaction);
 
                 Answer answer=new Answer();
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
                 answer.setSatisfactionId(satisfaction.getId());
-
-                satisfactions.add(satisfaction);
-                answers.add(answer);
+                writeAnswerRepository.save(answer);
                 continue;
             }
 
@@ -123,7 +117,7 @@ public class AnswerService {
                         Option select_opt=optionList.stream().filter(s->s.getId()==ans_item.getSelectid()).findFirst().get();
                         answer.setOptionId(select_opt.getId());
                     }
-                    answers.add(answer);
+                    writeAnswerRepository.save(answer);
                 }
             }
             else if(type.getId()==3){ //주관식
@@ -131,35 +125,29 @@ public class AnswerService {
                 essay.setQuestionId(question.getId());
                 essay.setSurveyId(survey.getId());
                 essay.setContents(type.getAnswer());
+                writeEssayRepository.save(essay);
 
                 Answer answer=new Answer();
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
                 answer.setEssayId(essay.getId());
-
-                essays.add(essay);
-                answers.add(answer);
+                writeAnswerRepository.save(answer);
             }
             else if(type.getId()==4){
                 Slider slider=new Slider();
                 slider.setQuestionId(question.getId());
                 slider.setSurveyId(survey.getId());
                 slider.setValue(Long.parseLong(type.getAnswer()));
+                writeSliderRepository.save(slider);
 
                 Answer answer=new Answer();
                 answer.setSurveyId(survey.getId());
                 answer.setQuestionId(question.getId());
                 answer.setSubmit(submitid);
                 answer.setSliderId(slider.getId());
-
-                sliders.add(slider);
-                answers.add(answer);
+                writeAnswerRepository.save(answer);
             }
         }
-        writeAnswerRepository.saveAll(answers);
-        writeSatisfactionRepository.saveAll(satisfactions);
-        writeEssayRepository.saveAll(essays);
-        writeSliderRepository.saveAll(sliders);
     }
 }
