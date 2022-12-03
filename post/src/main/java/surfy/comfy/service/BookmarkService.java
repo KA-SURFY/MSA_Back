@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import surfy.comfy.data.post.GetPostResponse;
 import surfy.comfy.entity.read.Member;
 import surfy.comfy.entity.write.Bookmark;
+import surfy.comfy.entity.write.Post;
 import surfy.comfy.repository.read.ReadBookmarkRepository;
 import surfy.comfy.repository.read.ReadMemberRepository;
 import surfy.comfy.repository.read.ReadPostRepository;
@@ -30,9 +31,10 @@ public class BookmarkService {
         List<GetPostResponse> bookmarks=new ArrayList<>();
 
         for(Bookmark b:bookmarkList){
-            Member member=readMemberRepository.findById(b.getPost().getMemberId()).get();
-            GetPostResponse post=new GetPostResponse(b.getPost(),member,true,true);
-            bookmarks.add(post);
+            Post post=readPostRepository.findById(b.getPostId()).get();
+            Member member=readMemberRepository.findById(post.getMemberId()).get();
+            GetPostResponse postRes=new GetPostResponse(post,member,true,true);
+            bookmarks.add(postRes);
         }
         return bookmarks;
     }
@@ -47,7 +49,7 @@ public class BookmarkService {
     public String addBookmark(Long postId, Long memberId){
         Bookmark bookmark=new Bookmark();
         bookmark.setMemberId(memberId);
-        bookmark.setPost(readPostRepository.findById(postId).get());
+        bookmark.setPostId(postId);
         writeBookmarkRepository.save(bookmark);
 
         return "북마크 추가 성공";
