@@ -39,7 +39,19 @@ public class LoadSurveyService {
 
     @SneakyThrows
     @Transactional
-    public GetSurveyDataResponse getSurveyData(Long surveyId,Long submitid){
+    @Cacheable(value = "survey", key = "#surveyId+':'+#submitId", cacheManager = "CacheManager")
+    public GetSurveyDataResponse getAnswerData(Long surveyId,Long submitid){
+        return getData(surveyId,submitid);
+    }
+    @SneakyThrows
+    @Transactional
+    @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
+    public GetSurveyDataResponse getSurveyData(Long surveyId){
+        return getData(surveyId,null);
+    }
+    @SneakyThrows
+    @Transactional
+    public GetSurveyDataResponse getData(Long surveyId,Long submitid){
         Survey survey= readSurveyRepository.findSurveysById(surveyId);
 
         GetSurveyDataResponse getSurveyDataResponse=new GetSurveyDataResponse();

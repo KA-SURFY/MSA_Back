@@ -20,9 +20,8 @@ public class LoadSurveyContoller {
     private final ReadAnswerRepository readAnswerRepository;
     @SneakyThrows
     @GetMapping("/load/survey/{surveyId}")
-    @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendEditSurveyData(@PathVariable(name="surveyId")Long surveyId){
-        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
+        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId);
         logger.info("editSurvey - surveyId: {}",surveyId);
         return new BaseResponse<>(result);
     }
@@ -30,9 +29,8 @@ public class LoadSurveyContoller {
 
     @SneakyThrows
     @GetMapping("/load/respondent/{surveyId}")
-    @Cacheable(value = "survey", key = "#surveyId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendRespondentSurveyData(@PathVariable(name="surveyId")Long surveyId){
-        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,null);
+        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId);
         logger.info("respondentSurvey - surveyId: {}",surveyId);
         return new BaseResponse<>(result);
     }
@@ -40,9 +38,8 @@ public class LoadSurveyContoller {
 
     @SneakyThrows
     @GetMapping("/load/respondent/answer/{surveyId}/{submitId}")
-    @Cacheable(value = "survey", key = "#surveyId+':'+#submitId", cacheManager = "CacheManager")
     public BaseResponse<GetSurveyDataResponse> SendSurveyAnswerData(@PathVariable(name="surveyId")Long surveyId,@PathVariable(name="submitId")Long submitId){
-        GetSurveyDataResponse result= loadSurveyService.getSurveyData(surveyId,submitId);
+        GetSurveyDataResponse result= loadSurveyService.getAnswerData(surveyId,submitId);
         logger.info("respondentSurveyAnswer - surveyId: {}, submitId: {}",surveyId,submitId);
         return new BaseResponse<>(result);
     }
