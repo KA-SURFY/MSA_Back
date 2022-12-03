@@ -104,11 +104,21 @@ public class ResultService {
                 List<Answer> answerList1 = readAnswerRepository.findAllByQuestionIdAndSubmit(questionResponseList.get(i).getId(), (j + 1L));
                 for(Answer a : answerList1) {
                     AnswerDataResponse answerDataResponse=new AnswerDataResponse();
-                    answerDataResponse.setGrid(readGridRepository.findById(a.getGridId()).get());
-                    answerDataResponse.setEssay(readEssayRepository.findById(a.getEssayId()).get());
-                    answerDataResponse.setSlider(readSliderRepository.findById(a.getSliderId()).get());
-                    answerDataResponse.setSatisfaction(readSatisfactionRepository.findById(a.getSatisfactionId()).get());
-                    answerDataResponse.setOption(readOptionRepository.findById(a.getOptionId()).get());
+                    if(a.getGridId()!=null){
+                        answerDataResponse.setGrid(readGridRepository.findById(a.getGridId()).get());
+                    }
+                    if(a.getEssayId()!=null){
+                        answerDataResponse.setEssay(readEssayRepository.findById(a.getEssayId()).get());
+                    }
+                    if(a.getSliderId()!=null){
+                        answerDataResponse.setSlider(readSliderRepository.findById(a.getSliderId()).get());
+                    }
+                    if(a.getSatisfactionId()!=null){
+                        answerDataResponse.setSatisfaction(readSatisfactionRepository.findById(a.getSatisfactionId()).get());
+                    }
+                    if(a.getOptionId()!=null){
+                        answerDataResponse.setOption(readOptionRepository.findById(a.getOptionId()).get());
+                    }
                     answers.add(answerDataResponse);
                     logger.info("[문항별 보기] - answers: {}",readQuestionRepository.findById(a.getQuestionId()).get().getContents());
                     logger.info("[문항별 보기] - answers: {}",a.getQuestionId());
