@@ -35,6 +35,8 @@ public class ResultController {
 
     @GetMapping("/result/individual/{survey_id}")
     public BaseResponse<List<RespondentsResponse>> getSurveyIndividual(@PathVariable(name="survey_id") Long surveyId){
+        logger.info("[respondent service: 개별 보기 - 응답자 수] - surveyId: {}",surveyId);
+
         List<RespondentsResponse> responseList = resultService.getRespondents(surveyId);
 
         return new BaseResponse<>(responseList);
