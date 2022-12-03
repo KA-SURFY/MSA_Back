@@ -13,6 +13,7 @@ import surfy.comfy.type.SurveyType;
 import javax.persistence.EntityManager;
 import java.awt.desktop.QuitEvent;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -51,9 +52,9 @@ public class CreateSurveyService {
         else{
             survey.setStatus(SurveyType.surveying);
             LocalDate end=LocalDate.parse(data.getEnd());
-            survey.setEnd(end);
+            survey.setEnd(LocalDateTime.from(end));
             LocalDate start=LocalDate.parse(data.getStart());
-            survey.setStart(start);
+            survey.setStart(LocalDateTime.from(start));
         }
 
         List<GetQuestionResponse> ques_list=data.getQues_list();
