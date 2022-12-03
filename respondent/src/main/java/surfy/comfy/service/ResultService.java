@@ -102,24 +102,26 @@ public class ResultService {
                 List<Answer> answerList1 = readAnswerRepository.findAllByQuestionIdAndSubmit(questionResponseList.get(i).getId(), (j + 1L));
                 for(Answer a : answerList1) {
                     answers.add(a);
+                    logger.info("[문항별 보기] - answers: {}",a);
+                    logger.info("[문항별 보기] - answers: {}",a.getQuestionId());
                 }
 
             }
             questionAnswerResponse.setAnswer(answers);
             questionAnswerResponseList.add(questionAnswerResponse);
         }
-        logger.info("문항별 보기 - {}",questionAnswerResponseList);
+
         return questionAnswerResponseList;
     }
 
-    @Cacheable(value = "result_option", key = "#questionId", cacheManager = "CacheManager")
+//    @Cacheable(value = "result_option", key = "#questionId", cacheManager = "CacheManager")
     // 문항별 보기에서 객관식 질문이 있으면 옵션 가져오기
     public List<Option> getOptions(Long surveyId, Long questionId){
         List<Option> optionList = readOptionRepository.findAllByQuestionId(questionId);
         return optionList;
     }
 
-    @Cacheable(value = "result_grid", key = "#questionId", cacheManager = "CacheManager")
+//    @Cacheable(value = "result_grid", key = "#questionId", cacheManager = "CacheManager")
     public List<Grid> getGridOptions(Long surveyId, Long questionId){
         List<Grid> gridList = readGridRepository.findAllByQuestionId(questionId);
         return gridList;
