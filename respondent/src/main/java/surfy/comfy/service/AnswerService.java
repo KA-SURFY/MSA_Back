@@ -48,7 +48,8 @@ public class AnswerService {
         em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
         List<Answer> ans_list= writeAnswerRepository.findAllBySurveyId(surveyId);
         for(int i=0;i<ans_list.size();i++){
-            writeEssayRepository.delete(ans_list.get(i).getEssay());
+            if(ans_list.get(i).getEssayId()!=null) Essay essay=readEssayRepository.findById(ans_list.get(i).getEssayId()).get();
+            writeEssayRepository.delete(ans_list.get(i).getId());
             writeSliderRepository.delete(ans_list.get(i).getSlider());
             writeSatisfactionRepository.delete(ans_list.get(i).getSatisfaction());
         }

@@ -16,7 +16,7 @@ public class Satisfaction {
     private Long id;
 
     @Column(name="survey_id")
-    private Long survey;
+    private Long surveyId;
 
     private Long percent;
 
