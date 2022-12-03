@@ -97,7 +97,7 @@ public class PostService {
      * @param memberId
      * @return
      */
-    @Cacheable(value = "post", key = "#postId", cacheManager = "CacheManager")
+//    @Cacheable(value = "post", key = "#postId", cacheManager = "CacheManager")
     @Transactional
     public GetPostResponse getPost(Long postId,Long memberId){
         logger.info("[getPost] - memberId: {}",memberId);

@@ -63,7 +63,7 @@ public class OAuthService {
                 }
 
                 logger.info("[로그인]");
-                Member member = readMemberRepository.findByEmail(googleUser.getEmail()).orElseThrow(IllegalArgumentException::new);
+                Member member = writeMemberRepository.findByEmail(googleUser.getEmail()).orElseThrow(IllegalArgumentException::new);
                 Token token;
                 if(readTokenRepository.findByMemberId(member.getId()).isPresent()){
                     token=writeTokenRepository.findByMemberId(member.getId()).get();
