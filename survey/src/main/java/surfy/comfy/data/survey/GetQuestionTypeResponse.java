@@ -1,5 +1,6 @@
 package surfy.comfy.data.survey;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;
 import surfy.comfy.entity.read.Answer;
@@ -12,6 +13,7 @@ import java.util.List;
 
 
 @Data
+@AllArgsConstructor
 public class GetQuestionTypeResponse {
     private Long id;
     private String name;

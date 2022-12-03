@@ -2,8 +2,10 @@
 
 package surfy.comfy.data.survey;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 @Data
+@AllArgsConstructor
 public class GetOptionResponse {
     private Long temid;
     private Long rootid;

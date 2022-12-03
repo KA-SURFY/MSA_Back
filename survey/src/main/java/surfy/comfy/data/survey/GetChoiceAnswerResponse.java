@@ -1,10 +1,13 @@
 package surfy.comfy.data.survey;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import surfy.comfy.entity.read.Answer;
 import surfy.comfy.entity.write.Question;
 import surfy.comfy.type.QuestionType;
 @Data
+@AllArgsConstructor
 public class GetChoiceAnswerResponse {
     private Long id;
     private Long temid;
