@@ -75,15 +75,15 @@ public class SurveyService {
         for(Question q:questionList){
             Question question=new Question();
             question.setContents(q.getContents());
-            question.setSurveyId(readSurveyRepository.findById(newSurveyId).get().getId());
+            question.setSurveyId(writeSurveyRepository.findById(newSurveyId).get().getId());
             question.setQuestionType(q.getQuestionType());
             Long newQuestionId= writeQuestionRepository.save(question).getId();
 
             for(Grid g:gridList){
                 Grid grid=new Grid();
                 grid.setContents(g.getContents());
-                grid.setQuestionId(readQuestionRepository.findById(newQuestionId).get().getId());
-                grid.setSurveyId(readSurveyRepository.findById(newSurveyId).get().getId());
+                grid.setQuestionId(writeQuestionRepository.findById(newQuestionId).get().getId());
+                grid.setSurveyId(writeSurveyRepository.findById(newSurveyId).get().getId());
 
                 writeGridRepository.save(grid);
             }
@@ -91,8 +91,8 @@ public class SurveyService {
             for(Option o:optionList){
                 Option option=new Option();
                 option.setContents(o.getContents());
-                option.setSurveyId(readSurveyRepository.findById(newSurveyId).get().getId());
-                option.setQuestionId(readQuestionRepository.findById(newQuestionId).get().getId());
+                option.setSurveyId(writeSurveyRepository.findById(newSurveyId).get().getId());
+                option.setQuestionId(writeQuestionRepository.findById(newQuestionId).get().getId());
 
                 writeOptionRepository.save(option);
             }
