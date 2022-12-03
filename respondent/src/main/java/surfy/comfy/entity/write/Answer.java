@@ -15,27 +15,25 @@ public class Answer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="answer_id")
     private Long id;
+
     @Column(name="question_id")
     private Long questionId;
+
     @Column(name="survey_id")
     private Long surveyId;
+
     @Column(name="option_id")
     private Long optionId;
+
     @Column(name="grid_id")
     private Long gridId;
 
-    @OneToOne
-    @JoinColumn(name="essay_id")
-    private Essay essay;
+    @Column(name="essay_id")
+    private Long essayId;
 
-    @OneToOne
-    @JoinColumn(name="satisfaction_id")
-    private Satisfaction satisfaction;
+    @Column(name="satisfaction_id")
+    private Long satisfactionId;
 
     @Column(name="submit_id")
     private Long submit;
-
-    @OneToOne
-    @JoinColumn(name="slider_id")
-    private Slider slider;
 }

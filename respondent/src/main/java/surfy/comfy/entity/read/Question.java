@@ -23,22 +23,8 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private QuestionType questionType;
 
-    @ManyToOne
-    @JsonBackReference(value = "survey-question")
-    @JoinColumn(name="survey_id")
-    private Survey survey;
-
-    @JsonManagedReference(value ="question-option")
-    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
-    private List<Option> options;
-
-    @JsonManagedReference(value = "question-grid")
-    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
-    private List<Grid> grids;
+    @Column(name="survey_id")
+    private Long surveyId;
 
     private String contents;
-
-    public void setGrid(Grid grid){
-        grids.add(grid);
-    }
 }

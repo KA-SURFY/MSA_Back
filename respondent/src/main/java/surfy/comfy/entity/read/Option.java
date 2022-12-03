@@ -15,15 +15,11 @@ public class Option {
     @Column(name="option_id")
     private Long id;
 
-    @ManyToOne
-    @JsonBackReference(value ="question-option")
-    @JoinColumn(name="question_id")
-    private Question question;
+    @Column(name="question_id")
+    private Long questionId;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name="survey_id")
-    private Survey survey;
+    @Column(name="survey_id")
+    private Long surveyId;
 
     private String contents;
 }
