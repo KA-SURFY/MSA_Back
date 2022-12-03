@@ -9,6 +9,7 @@ import surfy.comfy.type.SurveyType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Survey {
     @Column(name="member_id")
     private Long memberId; // 설문 제작자
 
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
     private String title;
     private String contents;

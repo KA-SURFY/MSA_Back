@@ -151,7 +151,7 @@ public class PostService {
     public DeletePostResponse deletePost(Long postId, Long memberId){
         Post post=writePostRepository.findById(postId).get();
         // 해당 게시글을 북마크한 사람들의 북마크 삭제
-        List<Bookmark> bookmarks=writeBookmarkRepository.findAllByPost_Id(postId);
+        List<Bookmark> bookmarks=writeBookmarkRepository.findAllByPostId(postId);
         for(Bookmark bookmark:bookmarks){
             writeBookmarkRepository.delete(bookmark);
         }
