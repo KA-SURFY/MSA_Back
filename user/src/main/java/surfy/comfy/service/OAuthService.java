@@ -71,7 +71,7 @@ public class OAuthService {
                 else{
                     token=new Token();
                 }
-                token.setMember(member);
+                token.setMemberId(member.getId());
                 token.setRefreshToken(jwtRefreshToken);
                 Long idx=writeTokenRepository.save(token).getId();
 
