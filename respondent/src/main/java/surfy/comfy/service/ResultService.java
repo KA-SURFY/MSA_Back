@@ -76,7 +76,7 @@ public class ResultService {
     }
 
     //질문 내용과 해당하는 답변 가져오기
-    @Cacheable(value = "result_question", key = "#surveyId", cacheManager = "CacheManager")
+//    @Cacheable(value = "result_question", key = "#surveyId", cacheManager = "CacheManager")
     public List<QuestionAnswerResponse> getQuestionAnswerList(Long surveyId){
         List<Question> questionList = readQuestionRepository.findAllBySurveyId(surveyId);
 
