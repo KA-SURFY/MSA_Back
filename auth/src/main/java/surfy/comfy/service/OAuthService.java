@@ -41,7 +41,7 @@ public class OAuthService {
                 Claims claimsToken = jwtTokenProvider.getClaimsToken(token);
                 String email = (String)claimsToken.get("email");
                 Optional<Member> member = readMemberRepository.findByEmail(email);
-                String tokenFromDB = readTokenRepository.findByMember_Id(member.get().getId()).get().getRefreshToken();
+                String tokenFromDB = readTokenRepository.findByMemberId(member.get().getId()).get().getRefreshToken();
                 logger.info("refresh token from DB: {}",tokenFromDB);
                 if(token.equals(tokenFromDB)) {   //DB의 refresh토큰과 지금들어온 토큰이 같은지 확인
                     Token old_ref_token = writeTokenRepository.findByRefreshToken(tokenFromDB).get();
