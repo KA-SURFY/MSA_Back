@@ -123,7 +123,7 @@ public class PostService {
 
         Boolean isBookmarked=false;
         Boolean member_case=false;
-        
+
         if(memberId!=0){ // 비회원
             Long member_id=memberId;
             member_case=true;

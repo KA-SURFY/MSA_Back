@@ -42,6 +42,7 @@ public class CreateSurveyService {
         if(survey==null){
             survey=new Survey();
         }
+        
         survey.setMemberId(memberId);
         survey.setTitle(data.getIntro0());
         survey.setContents(data.getIntro1());
