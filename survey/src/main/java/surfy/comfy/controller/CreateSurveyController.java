@@ -26,7 +26,6 @@ public class CreateSurveyController {
     private final Logger logger= LoggerFactory.getLogger(SurveyService.class);
     /**
      * minseo
-     * @param request
      * @return
      */
     @PatchMapping("/survey/thumbnail/{surveyId}/{thumb}")
@@ -35,12 +34,12 @@ public class CreateSurveyController {
 
         return new BaseResponse<>(response);
     }
-    @PostMapping("/survey/{memberId}")
-    public BaseResponse<Long> CreateSurvey(@RequestBody GetSurveyDataResponse data, @PathVariable(name="memberId")Long memberId){
+    @PostMapping("/survey/{memberId}/{thumb}")
+    public BaseResponse<Long> CreateSurvey(@RequestBody GetSurveyDataResponse data, @PathVariable(name="memberId")Long memberId,@PathVariable(name="thumb")Long thumb){
 
         System.out.println("memberId: "+memberId);
 
-        Long survey_Id=createSurveyService.CreateSurveyDB(data,null,memberId);
+        Long survey_Id=createSurveyService.CreateSurveyDB(data,null,memberId,thumb);
         System.out.println("surveyId"+survey_Id);
 
         return new BaseResponse<>(survey_Id);
@@ -51,7 +50,7 @@ public class CreateSurveyController {
         Survey survey = readSurveyRepository.findSurveysById(surveyId);
 
         createSurveyService.ResetSurveyDB(survey);
-        Long survey_Id=createSurveyService.CreateSurveyDB(data,survey,memberId);
+        Long survey_Id=createSurveyService.CreateSurveyDB(data,survey,memberId,0L);
         return new BaseResponse<>(survey_Id);
     }
 
