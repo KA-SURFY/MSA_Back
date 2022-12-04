@@ -38,7 +38,7 @@ public class CreateSurveyService {
         return "썸네일 저장 성공";
     }
     @Transactional
-    public Long CreateSurveyDB(GetSurveyDataResponse data, Survey survey, Long memberId){
+    public Long CreateSurveyDB(GetSurveyDataResponse data, Survey survey, Long memberId,Long thumb){
         if(survey==null){
             survey=new Survey();
         }
@@ -46,7 +46,7 @@ public class CreateSurveyService {
         survey.setMemberId(memberId);
         survey.setTitle(data.getIntro0());
         survey.setContents(data.getIntro1());
-//        if(thumb!=0L) survey.setThumbnail(thumb);
+        if(thumb!=0L) survey.setThumbnail(thumb);
         if(data.getEnd().equals("not")){
             survey.setStatus(SurveyType.notFinish);
         }
