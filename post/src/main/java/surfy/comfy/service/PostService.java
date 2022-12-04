@@ -77,7 +77,9 @@ public class PostService {
 
         for(Post p: allPostList){
             Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPostId(memberId,p.getId());
-            Member member=readMemberRepository.findById(p.getMemberId()).get();
+//            Member member=readMemberRepository.findById(p.getMemberId()).get();
+            Member member=readMemberRepository.findById(memberId).get();
+
             if(bookmark==null){
                 isBookmarked=false;
             }
