@@ -78,7 +78,6 @@ public class PostService {
         for(Post p: allPostList){
             Bookmark bookmark=readBookmarkRepository.findByMemberIdAndPostId(memberId,p.getId());
             Member member=readMemberRepository.findById(p.getMemberId()).get();
-//            Member member=readMemberRepository.findById(memberId).get();
 
             if(bookmark==null){
                 isBookmarked=false;
@@ -105,6 +104,7 @@ public class PostService {
         logger.info("[getPost] - memberId: {}",memberId);
 
         Post post=readPostRepository.findById(postId).get();
+        Member member=readMemberRepository.findById(post.getMemberId()).get();
         Survey survey= readSurveyRepository.findSurveysById(post.getSurveyId());
         List<Satisfaction> allSatisfactions=readSatisfactionRepository.findAllBySurveyId(survey.getId());
         Long total=0L;
@@ -137,7 +137,7 @@ public class PostService {
             }
         }
 
-        GetPostResponse response=new GetPostResponse(post,isBookmarked,member_case,survey.getSatisfaction(),average);
+        GetPostResponse response=new GetPostResponse(post,member.getName(),isBookmarked,member_case,survey.getSatisfaction(),average);
 
         return response;
     }

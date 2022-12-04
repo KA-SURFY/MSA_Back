@@ -32,13 +32,13 @@ public class GetPostResponse {
     private Long thumbnail;
 
 
-    public GetPostResponse(Post post, Boolean isBookmarked, Boolean member_case, Long mySatisfaction, int averageSatisfaction){
+    public GetPostResponse(Post post, String memberName,Boolean isBookmarked, Boolean member_case, Long mySatisfaction, int averageSatisfaction){
         this.postId=post.getId();
         this.title=post.getTitle();
         this.contents=post.getContents();
         this.surveyId=post.getSurveyId();
         this.surveyTitle=post.getTitle();
-        this.authorName=post.getName();
+        this.authorName=memberName;
         this.authorId=post.getMemberId();
         this.isBookmarked=isBookmarked;
         this.member_case=member_case;
