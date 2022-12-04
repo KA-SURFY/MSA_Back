@@ -36,7 +36,7 @@ public class CreateSurveyController {
     }
     @PostMapping("/survey/{memberId}/{thumb}")
     public BaseResponse<Long> CreateSurvey(@RequestBody GetSurveyDataResponse data, @PathVariable(name="memberId")Long memberId,@PathVariable(name="thumb")Long thumb){
-
+        logger.info("[CreateSurvey]");
         System.out.println("memberId: "+memberId);
 
         Long survey_Id=createSurveyService.CreateSurveyDB(data,null,memberId,thumb);
