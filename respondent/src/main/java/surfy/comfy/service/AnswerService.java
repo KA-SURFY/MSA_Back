@@ -105,15 +105,13 @@ public class AnswerService {
                     answer.setSubmit(submitid);
 
                     if(type.getId()==2){ //객관식 Grid 답변
-                        System.out.println(ans_item.getRootid());
-                        
-                        Option select_opt=optionList.stream().filter(s->s.getId()==ans_item.getRootid()).findFirst().get();
-                        Grid select_grid=gridList.stream().filter(s->s.getId()==ans_item.getSelectid()).findFirst().get();
+                        Option select_opt=optionList.stream().filter(s-> s.getId().equals(ans_item.getRootid())).findFirst().get();
+                        Grid select_grid=gridList.stream().filter(s-> s.getId().equals(ans_item.getSelectid())).findFirst().get();
                         answer.setGridId(select_grid.getId());
                         answer.setOptionId(select_opt.getId());
                     }
                     else{
-                        Option select_opt=optionList.stream().filter(s->s.getId()==ans_item.getSelectid()).findFirst().get();
+                        Option select_opt=optionList.stream().filter(s-> s.getId().equals(ans_item.getSelectid())).findFirst().get();
                         answer.setOptionId(select_opt.getId());
                     }
                     writeAnswerRepository.save(answer);
