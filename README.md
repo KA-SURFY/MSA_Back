@@ -1,89 +1,80 @@
 # MSA_Back
 🤩 가천대학교 카카오 아카데미 Surfy 팀의 MSA_backend 리포지토리입니다.
-# Project Title
+# 프로젝트명
+> 간략한 프로젝트 소개 문구를 작성합니다.
 
-One Paragraph of project description goes here
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Downloads Stats][npm-downloads]][npm-url]
 
-## Getting Started
+한 두 문단으로 프로젝트 소개 글을 작성합니다.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+![](../header.png)
 
-### Prerequisites
+## 설치 방법
 
-What things you need to install the software and how to install them
+OS X & 리눅스:
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+```sh
+npm install my-crazy-module --save
 ```
 
-And repeat
+윈도우:
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```sh
+edit autoexec.bat
 ```
 
-### And coding style tests
+## 사용 예제
 
-Explain what these tests test and why
+스크린 샷과 코드 예제를 통해 사용 방법을 자세히 설명합니다.
 
+_더 많은 예제와 사용법은 [Wiki][wiki]를 참고하세요._
+
+## 개발 환경 설정
+
+모든 개발 의존성 설치 방법과 자동 테스트 슈트 실행 방법을 운영체제 별로 작성합니다.
+
+```sh
+make install
+npm test
 ```
-Give an example
-```
 
-## Deployment
+## 업데이트 내역
 
-Add additional notes about how to deploy this on a live system
+* 0.2.1
+    * 수정: 문서 업데이트 (모듈 코드 동일)
+* 0.2.0
+    * 수정: `setDefaultXYZ()` 메서드 제거
+    * 추가: `init()` 메서드 추가
+* 0.1.1
+    * 버그 수정: `baz()` 메서드 호출 시 부팅되지 않는 현상 (@컨트리뷰터 감사합니다!)
+* 0.1.0
+    * 첫 출시
+    * 수정: `foo()` 메서드 네이밍을 `bar()`로 수정
+* 0.0.1
+    * 작업 진행 중
 
-## Built With
+## 정보
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+이름 – [@트위터 주소](https://twitter.com/dbader_org) – 이메일주소@example.com
 
-## Contributing
+XYZ 라이센스를 준수하며 ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+[https://github.com/yourname/github-link](https://github.com/dbader/)
 
-## Versioning
+## 기여 방법
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+1. (<https://github.com/yourname/yourproject/fork>)을 포크합니다.
+2. (`git checkout -b feature/fooBar`) 명령어로 새 브랜치를 만드세요.
+3. (`git commit -am 'Add some fooBar'`) 명령어로 커밋하세요.
+4. (`git push origin feature/fooBar`) 명령어로 브랜치에 푸시하세요. 
+5. 풀리퀘스트를 보내주세요.
 
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+<!-- Markdown link & img dfn's -->
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
+[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
+[wiki]: https://github.com/yourname/yourproject/wiki
